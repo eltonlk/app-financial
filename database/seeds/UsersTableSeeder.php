@@ -17,5 +17,11 @@ class UsersTableSeeder extends Seeder
                 'name'  => 'Administrador',
                 'email' => 'admin@mail.com'
             ]);
+
+        factory(AppFinancial\User::class, 1)
+            ->create([
+                'name'  => 'Cliente da Silva',
+                'email' => 'cliente@mail.com'
+            ]);
     }
 }

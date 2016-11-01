@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(AppFinancial\User::class, function (Faker\Generator $faker) {
+$factory->define(\AppFinancial\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,8 +23,8 @@ $factory->define(AppFinancial\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->state(AppFinancial\User::class, 'admin', function (Faker\Generator $faker) {
+$factory->state(\AppFinancial\User::class, 'admin', function (Faker\Generator $faker) {
     return [
-        'role' => AppFinancial\User::ROLE_ADMIN
+        'role' => \AppFinancial\User::ROLE_ADMIN
     ];
 });

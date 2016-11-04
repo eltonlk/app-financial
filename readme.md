@@ -1,27 +1,28 @@
-# Laravel PHP Framework
+# app-financial
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Não estou conseguindo ver algums videos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Bom dia
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Já tinha relatado semana passada no dia 28,
+que não tinha conseguido ver a seguinte aula:
 
-## Official Documentation
+"Prefixo admin para rotas de autenticação"
+Endereço: https://portal.code.education/lms/#/135/123/74/conteudos?capitulo=520&conteudo=3999
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Foi solicitado que testasse novamente, mas o problema persiste.
 
-## Contributing
+Conforme o print disponivel no link abaixo:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+https://drive.google.com/open?id=0B1sIPjdBc9YURDNWdE9ES1lpcTg
 
-## Security Vulnerabilities
+Agora está dando o mesmo problema em outra aula:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+"Configurando inline e hot do webpack-dev-server"
+https://portal.code.education/lms/#/135/123/74/conteudos?capitulo=521&conteudo=4010
 
-## License
+Tirei outro print da tela.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+https://drive.google.com/open?id=0B1sIPjdBc9YUQjVRYUZKYjJ0d0k
+
+Aguardo.

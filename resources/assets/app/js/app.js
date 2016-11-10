@@ -1,7 +1,21 @@
 require("./bootstrap");
 
-Vue.component("app", require("./components/App.vue"));
+import AppComponent from "./components/App.vue";
+import LoginComponent from "./components/Login.vue";
 
-const app = new Vue({
-    el: "body"
+let VueRouter = require("vue-router");
+
+const router = new VueRouter();
+
+router.map({
+    "/login": {
+        name: "auth.login",
+        component: LoginComponent
+    }
 });
+
+router.start({
+    components: {
+        "app": AppComponent
+    }
+}, "body");

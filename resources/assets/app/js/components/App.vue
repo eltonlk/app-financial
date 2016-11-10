@@ -4,6 +4,7 @@
         </header>
 
         <main>
+            <router-view></router-view>
         </main>
 
         <footer class="page-footer">
@@ -16,7 +17,7 @@
     </div>
 </template>
 
-<script>
+<script type="text/javascript">
     export default {
         data () {
             return {

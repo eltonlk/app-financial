@@ -21,6 +21,6 @@ Route::post('refresh_token', 'Api\AuthController@refreshToken');
 
 Route::get('user', function (Request $request) {
     return response()->json([
-      'name' => Auth::user()->name;
+      'name' => Auth::user()->name
     ]);
 })->middleware('auth:api');

@@ -3,6 +3,15 @@
         <div class="row">
             <div class="col s8 offset-s2 z-depth-2">
                 <h3 class="center">Financeiro</h3>
+
+                <div class="row" v-if="error.any">
+                    <div class="col s12">
+                        <div class="card-panel red">
+                            <span class="white-text">{{ error.message }}</span>
+                        </div>
+                    </div>
+                </div>
+
                 <form method="POST" @submit.prevent="login()">
                     <div class="row">
                         <div class="input-field col s12">
@@ -35,6 +44,10 @@
     export default {
         data () {
             return {
+                error: {
+                    any: false,
+                    message: ''
+                },
                 user: {
                     email: "",
                     password: ""
@@ -46,6 +59,17 @@
                 Auth.login(this.user.email, this.user.password)
                     .then(() => {
                         this.$router.go({ name: "dashboard" });
+                    })
+                    .catch((response) => {
+                        this.error.any = true;
+
+                        switch (response.status) {
+                            case 401:
+                                this.error.message = response.data.message;
+                                break;
+                            default:
+                                this.error.message = "Login failed.";
+                        }
                     });
             }
         }

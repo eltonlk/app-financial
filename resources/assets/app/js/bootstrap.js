@@ -10,6 +10,7 @@ require("materialize-css");
 
 window.Vue = require("vue");
 require("vue-resource");
+require("./services/appConfig");
 
 Vue.http.options.root = appConfig.api_url;
 

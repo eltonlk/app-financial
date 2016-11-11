@@ -5,14 +5,17 @@ import LogoutComponent from "./components/Logout.vue";
 export default {
     "/dashboard": {
         name: "dashboard",
-        component: DashboardComponent
+        component: DashboardComponent,
+        auth: true
     },
     "/login": {
         name: "auth.login",
-        component: LoginComponent
+        component: LoginComponent,
+        auth: false
     },
     "/logout": {
         name: "auth.logout",
-        component: LogoutComponent
+        component: LogoutComponent,
+        auth: true
     }
 };

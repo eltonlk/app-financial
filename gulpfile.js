@@ -5,6 +5,9 @@ const WebpackDevServer = require("webpack-dev-server");
 const webpackConfig    = require("./webpack.config");
 const webpackDevConfig = require("./webpack.dev.config");
 const mergeWebpack     = require("webpack-merge");
+const env              = require("gulp-env");
+const stringifyObject  = require("stringify-object");
+const file             = require("gulp-file");
 
 // require("laravel-elixir-vue");
 // require("laravel-elixir-webpack-official");
@@ -13,6 +16,19 @@ const mergeWebpack     = require("webpack-merge");
 
 // Elixir.webpack.mergeConfig(webpackConfig);
 // Elixir.webpack.mergeConfig(webpackDevConfig);
+
+gulp.task("app-config", () => {
+    env({
+        file: ".env",
+        type: "ini"
+    });
+
+    let appConfig = require("./app.config");
+    let string    = stringifyObject(appConfig);
+
+    return file("config.js", `module.exports = ${string};`, { src: true })
+        .pipe(gulp.dest("./resources/assets/app/js"));
+});
 
 gulp.task("webpack-dev-server", () => {
     let config = mergeWebpack(webpackConfig, webpackDevConfig);
@@ -48,7 +64,7 @@ elixir((mix) => {
         .sass("./resources/assets/app/sass/app.scss")
         .copy("./node_modules/materialize-css/fonts/roboto", "./public/fonts/roboto");
 
-    gulp.start("webpack-dev-server");
+    gulp.start("app-config", "webpack-dev-server");
 
     mix.browserSync({
         proxy: "http://0.0.0.0:8080"

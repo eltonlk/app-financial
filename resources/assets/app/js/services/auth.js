@@ -1,11 +1,21 @@
-import {Jwt}        from "./resources";
+import {Jwt,User}   from "./resources";
 import LocalStorage from "./localStorage";
 
 const TOKEN = "token";
+const USER = "user";
+
+const afterLogin = (response) => {
+    User.get()
+        .then((response) => {
+            LocalStorage.setObject(USER, response.data);
+        });
+};
 
 export default {
     login (email, password) {
         return Jwt.login(email, password).then((response) => {
+            afterLogin(response);
+
             LocalStorage.set(TOKEN, response.data.token);
 
             return response;
@@ -13,5 +23,8 @@ export default {
     },
     getAuthorizationHeader () {
         return `Bearer ${LocalStorage.get(TOKEN)}`;
+    },
+    user () {
+        return LocalStorage.getObject(USER);
     }
 };

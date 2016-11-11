@@ -5,21 +5,32 @@ const TOKEN = "token";
 const USER = "user";
 
 const afterLogin = (response) => {
+    LocalStorage.set(TOKEN, response.data.token);
+
     User.get()
         .then((response) => {
             LocalStorage.setObject(USER, response.data);
         });
 };
 
+const afterLogout = () => {
+    LocalStorage.remove(TOKEN);
+    LocalStorage.remove(USER);
+};
+
 export default {
     login (email, password) {
-        return Jwt.login(email, password).then((response) => {
-            afterLogin(response);
+        return Jwt.login(email, password)
+            .then((response) => {
+                afterLogin(response);
 
-            LocalStorage.set(TOKEN, response.data.token);
-
-            return response;
-        });
+                return response;
+            });
+    },
+    logout () {
+        return Jwt.logout()
+            .then(afterLogout())
+            .catch(afterLogout());
     },
     getAuthorizationHeader () {
         return `Bearer ${LocalStorage.get(TOKEN)}`;

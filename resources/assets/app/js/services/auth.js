@@ -8,6 +8,10 @@ export default {
     check () {
         return LocalStorage.get(TOKEN) ? true : false;
     },
+    clearAuth () {
+        LocalStorage.remove(TOKEN);
+        LocalStorage.remove(USER);
+    },
     getAuthorizationHeader () {
         return `Bearer ${LocalStorage.get(TOKEN)}`;
     },
@@ -25,14 +29,9 @@ export default {
             });
     },
     logout () {
-        const afterLogout = () => {
-            LocalStorage.remove(TOKEN);
-            LocalStorage.remove(USER);
-        };
-
         return Jwt.logout()
-            .then(afterLogout())
-            .catch(afterLogout());
+            .then(this.clearAuth())
+            .catch(this.clearAuth());
     },
     refreshToken () {
         return Jwt.refreshToken()

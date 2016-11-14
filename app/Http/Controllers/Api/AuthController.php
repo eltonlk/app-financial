@@ -78,6 +78,6 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => $message,
-        ], 401);
+        ], 400);
     }
 }

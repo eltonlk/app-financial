@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <header>
+            <menu-component></menu-component>
         </header>
 
         <main>
@@ -18,7 +19,12 @@
 </template>
 
 <script type="text/javascript">
+    import MenuComponent from "./Menu.vue";
+
     export default {
+        components: {
+            MenuComponent
+        },
         data () {
             return {
                 year: new Date().getFullYear()

@@ -5,6 +5,8 @@ namespace AppFinancial\Providers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+use AppFinancial\Models\User;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -26,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('access-admin', function ($user) {
-            return $user->role == \AppFinancial\User::ROLE_ADMIN;
+            return $user->role == User::ROLE_ADMIN;
         });
     }
 }

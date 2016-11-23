@@ -2,7 +2,7 @@
 
 namespace AppFinancial\Http\Controllers\Auth;
 
-use AppFinancial\User;
+use AppFinancial\Models\User;
 use AppFinancial\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;

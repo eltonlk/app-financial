@@ -9,6 +9,8 @@ const env              = require("gulp-env");
 const stringifyObject  = require("stringify-object");
 const file             = require("gulp-file");
 
+const HOST = "0.0.0.0";
+
 // require("laravel-elixir-vue");
 // require("laravel-elixir-webpack-official");
 
@@ -34,7 +36,7 @@ gulp.task("webpack-dev-server", () => {
     let config = mergeWebpack(webpackConfig, webpackDevConfig);
     let inlineHot = [
         "webpack/hot/dev-server",
-        "webpack-dev-server/client?http://0.0.0.0:8080"
+        `webpack-dev-server/client?http://${HOST}:8080`
     ];
 
     config.entry.admin = [ config.entry.admin ].concat(inlineHot);
@@ -43,7 +45,7 @@ gulp.task("webpack-dev-server", () => {
     new WebpackDevServer(webpack(config), {
         hot: true,
         proxy: {
-            "*": "http://0.0.0.0:8000"
+            "*": `http://${HOST}:8000`
         },
         watchOptions: {
             poll: true,
@@ -54,7 +56,7 @@ gulp.task("webpack-dev-server", () => {
         stats: {
             colors: true
         }
-    }).listen(8080, "0.0.0.0", () => {
+    }).listen(8080, HOST, () => {
         console.log("Bundling project...");
     });
 });
@@ -67,6 +69,6 @@ elixir((mix) => {
     gulp.start("app-config", "webpack-dev-server");
 
     mix.browserSync({
-        proxy: "http://0.0.0.0:8080"
+        proxy: `http://${HOST}:8080`
     });
 });

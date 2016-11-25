@@ -20,8 +20,8 @@ Route::get('app', function () {
 });
 
 Route::group([
-    'prefix'     => 'admin',
-    'as'         => 'admin.'
+    'prefix' => 'admin',
+    'as'     => 'admin.',
 ], function () {
     Auth::routes();
 
@@ -29,5 +29,11 @@ Route::group([
         'middleware' => 'can:access-admin',
     ], function () {
         Route::get('/home', 'HomeController@index')->name('home');
+
+        Route::get('/', 'Admin\BanksController@index')->name('root');
+
+        Route::resource('banks', 'Admin\BanksController', [
+            'except' => 'show',
+        ]);
     });
 });

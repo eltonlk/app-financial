@@ -27,17 +27,17 @@
                 <?php $menuConfig = [
                     'username' => Auth::user()->name,
                     'menus'    => [
-                        [ 'text' => 'Contas a pagar'  , 'url' => '/teste', 'subMenuId' => 'teste', ],
-                        [ 'text' => 'Contas a receber', 'url' => '/teste1', ],
+                        // [ 'text' => 'Contas a pagar'  , 'url' => '/teste', 'subMenuId' => 'teste', ],
+                        [ 'text' => 'Bancos', 'url' => route('admin.banks.index'), ],
                     ],
                     'subMenus' => [
-                        [
-                            'id'    => 'teste',
-                            'items' => [
-                                [ 'text' => 'Listar Contas', 'url' => '/listar', ],
-                                [ 'text' => 'Criar Contas' , 'url' => '/criar', ],
-                            ],
-                        ],
+                        // [
+                        //     'id'    => 'teste',
+                        //     'items' => [
+                        //         [ 'text' => 'Listar Contas', 'url' => '/listar', ],
+                        //         [ 'text' => 'Criar Contas' , 'url' => '/criar', ],
+                        //     ],
+                        // ],
                     ],
                     'urlLogout' => env('URL_ADMIN_LOGOUT'),
                     'csrfToken' => csrf_token()

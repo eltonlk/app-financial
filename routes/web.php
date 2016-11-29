@@ -28,8 +28,6 @@ Route::group([
     Route::group([
         'middleware' => 'can:access-admin',
     ], function () {
-        Route::get('/home', 'HomeController@index')->name('home');
-
         Route::get('/', 'Admin\BanksController@index')->name('root');
 
         Route::resource('banks', 'Admin\BanksController', [

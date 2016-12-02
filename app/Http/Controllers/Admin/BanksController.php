@@ -21,12 +21,6 @@ class BanksController extends Controller
     {
         $banks = $this->repository->paginate();
 
-        // if (request()->wantsJson()) {
-        //     return response()->json([
-        //         'data' => $banks,
-        //     ]);
-        // }
-
         return view('admin.banks.index', compact('banks'));
     }
 
@@ -37,33 +31,9 @@ class BanksController extends Controller
 
     public function store(BankCreateRequest $request)
     {
-        try {
+        $this->repository->create($request->all());
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $bank = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Bank created.',
-                'data'    => $bank->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return redirect()->route('admin.banks.index');
     }
 
     public function edit($id)
@@ -75,34 +45,9 @@ class BanksController extends Controller
 
     public function update(BankUpdateRequest $request, $id)
     {
-        try {
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        $this->repository->update($request->all(), $id);
 
-            $bank = $this->repository->update($id, $request->all());
-
-            $response = [
-                'message' => 'Bank updated.',
-                'data'    => $bank->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return redirect()->route('admin.banks.index');
     }
 
     public function destroy($id)

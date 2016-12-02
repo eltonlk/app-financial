@@ -6,10 +6,10 @@
 
         <a href="{{ route('admin.banks.index') }}" class="btn waves-effect grey">Voltar</a>
 
-        {!! Form::open([ 'route' => 'admin.banks.store' ]) !!}
+        {!! Form::model($bank, [ 'route' => [ 'admin.banks.update', $bank->id ], 'method' => 'put' ]) !!}
             @include('admin.banks._form')
 
-            {!! Form::submit('Criar Banco', [ 'class' => 'btn waves-effect']) !!}
+            {!! Form::submit('Alterar Banco', [ 'class' => 'btn waves-effect']) !!}
         {!! Form::close() !!}
     </div>
 @endsection

@@ -21,6 +21,8 @@
                         <td>{{ $bank->name }}</td>
                         <td>
                             <a href="{{ route('admin.banks.edit', $bank->id) }}">Editar</a>
+                            |
+                            <destroy-action form-id="bank_{{ $bank->id }}" url="{{ route('admin.banks.destroy', $bank->id) }}" csrf-token="{{ csrf_token() }}"></destroy-action>
                         </td>
                     </tr>
                 @endforeach

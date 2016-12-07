@@ -1,6 +1,6 @@
 <template>
     <ul :id="subMenu.id" class="dropdown-content" v-for="subMenu in config.subMenus">
-        <li v-for="item in subMenu.items">
+        <li v-for="item in subMenu.items" :class="menuItemClass(item)">
             <a :href="item.url">{{ item.text }}</a>
         </li>
     </ul>
@@ -24,7 +24,7 @@
                 </a>
 
                 <ul class="right hide-on-med-and-down">
-                    <li v-for="menu in config.menus">
+                    <li v-for="menu in config.menus" :class="menuItemClass(menu)">
                         <a v-if="menu.subMenuId" class="dropdown-button" href="!#" :data-activates="menu.subMenuId">
                             {{ menu.text }} <i class="material-icons right">arrow_drop_down</i>
                         </a>
@@ -52,6 +52,27 @@
         methods: {
             goToLogout () {
                 $("#logout-form").submit();
+            },
+            menuItemClass (menu) {
+                let menuClass = [ "active" ];
+
+                if (menu.active) {
+                    return menuClass;
+                }
+
+                if (menu.subMenuId !== undefined) {
+                    let subMenu = this.config.subMenus.find((element) => {
+                        return element.id == menu.subMenuId;
+                    });
+
+                    if (subMenu) {
+                        for (let item of subMenu.items) {
+                            if (item.active) {
+                                return menuClass;
+                            }
+                        }
+                    }
+                }
             }
         },
         props: {

@@ -90,7 +90,6 @@
             }
         },
         ready () {
-            console.log(this.config.subMenus);
             $(document).ready(() => {
                 $(".button-collapse").sideNav({ closeOnClick: true });
                 $(".dropdown-button").dropdown();

@@ -3,13 +3,12 @@ import Auth         from "./services/auth";
 import RouterMap    from "./router.map";
 import VueRouter    from "vue-router";
 
-
 const router = new VueRouter();
 
 router.map(RouterMap);
 
 router.beforeEach(({to, next}) => {
-    if (to.auth && !Auth.check()) {
+    if (to.auth && !Auth.user.check) {
         return router.go({ name: "auth.login" });
     }
 

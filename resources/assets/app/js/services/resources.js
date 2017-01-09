@@ -1,15 +1,15 @@
 /* global Vue */
 
 export class Jwt {
-    static login (email, password) {
-        return Vue.http.post("login", {
+    static accessToken (email, password) {
+        return Vue.http.post("access_token", {
             email: email,
             password: password
         });
     }
 
-    static logout () {
-        return Vue.http.post("logout");
+    static revokeToken () {
+        return Vue.http.post("revoke_token");
     }
 
     static refreshToken () {

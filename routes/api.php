@@ -6,13 +6,13 @@ Route::group([
     'middleware' => 'cors',
     'as'         => 'api.'
 ], function () {
-    Route::post('login', 'Api\AuthController@login')->name('login');
+    Route::post('access_token', 'Api\AuthController@accessToken')->name('access_token');
     Route::post('refresh_token', 'Api\AuthController@refreshToken')->name('refresh_token');
 
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
-        Route::post('logout', 'Api\AuthController@logout')->name('logout');
+        Route::post('revoke_token', 'Api\AuthController@revokeToken')->name('revoke_token');
 
         Route::get('user', function (Request $request) {
             $user = Auth::guard('api')->user();

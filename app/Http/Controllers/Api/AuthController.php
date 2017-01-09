@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     use AuthenticatesUsers;
 
-    public function login (Request $request)
+    public function accessToken (Request $request)
     {
         $this->validateLogin($request);
 
@@ -34,18 +34,18 @@ class AuthController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    public function logout ()
-    {
-        Auth::guard('api')->logout();
-
-        return response()->json([], 204);
-    }
-
     public function refreshToken (Request $request)
     {
         $token = Auth::guard('api')->refresh();
 
         return $this->sendLoginResponse($request, $token);
+    }
+
+    public function revokeToken ()
+    {
+        Auth::guard('api')->logout();
+
+        return response()->json([], 204);
     }
 
     protected function sendLoginResponse (Request $request, $token)

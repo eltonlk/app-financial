@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'AppFinancial\Events\SomeEvent' => [
-            'AppFinancial\Listeners\EventListener',
+        'AppFinancial\Events\BankStoredEvent' => [
+            'AppFinancial\Listeners\BankLogoUploadListener',
         ],
     ];
 

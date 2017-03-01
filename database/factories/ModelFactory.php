@@ -16,3 +16,11 @@ $factory->state(AppFinancial\Models\User::class, 'admin', function (Faker\Genera
         'role' => AppFinancial\Models\User::ROLE_ADMIN
     ];
 });
+
+$factory->define(AppFinancial\Models\BankAccount::class, function (Faker\Generator $faker) {
+    return [
+        'name'    => $faker->name,
+        'agency'  => rand(10000, 60000) . '-' . rand(0, 9),
+        'account' => rand(70000, 260000) . '-' . rand(0, 9)
+    ];
+});

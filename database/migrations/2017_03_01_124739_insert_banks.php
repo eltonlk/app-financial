@@ -17,7 +17,11 @@ class InsertBanks extends Migration
 
     public function down()
     {
+        $repository = app(\AppFinancial\Repositories\BankRepository::class);
 
+        foreach ($repository->all() as $bank) {
+            $repository->delete($bank->id);
+        }
     }
 
     public function getData()
@@ -57,6 +61,9 @@ class InsertBanks extends Migration
                     storage_path('app/files/banks/logos/santander.jpg'),
                     'santander.jpg'
                 )
+            ],
+            [
+                'name' => 'Sicredi'
             ],
         ];
     }

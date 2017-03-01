@@ -23,9 +23,9 @@ class BankLogoUploadListener
         if ($logo) {
             $filename = $bank->created_at != $bank->updated_at ? $bank->logo : md5(microtime(true)) . '.' . $logo->guessExtension();
 
-            \Storage::disk('public')->putFileAs(Bank::logosPath(), $logo, $filename);
+            $result = \Storage::disk('public')->putFileAs(Bank::logosPath(), $logo, $filename);
 
-            if ($bank->created_at == $bank->updated_at) {
+            if ($result && $bank->created_at == $bank->updated_at) {
                 $this->repository->update([ 'logo' => $filename ], $bank->id);
             }
         }

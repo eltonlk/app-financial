@@ -16,10 +16,3 @@ $factory->state(AppFinancial\Models\User::class, 'admin', function (Faker\Genera
         'role' => AppFinancial\Models\User::ROLE_ADMIN
     ];
 });
-
-$factory->define(AppFinancial\Models\Bank::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'logo' => md5(time()) . '.jpeg',
-    ];
-});

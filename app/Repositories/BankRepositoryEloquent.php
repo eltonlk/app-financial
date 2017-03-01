@@ -7,7 +7,6 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use AppFinancial\Repositories\BankRepository;
 use AppFinancial\Events\BankStoredEvent;
 use AppFinancial\Models\Bank;
-use AppFinancial\Validators\BankValidator;
 
 class BankRepositoryEloquent extends BaseRepository implements BankRepository
 {
@@ -37,7 +36,7 @@ class BankRepositoryEloquent extends BaseRepository implements BankRepository
     {
         $logo = null;
 
-        if (isset($attributes['logo'])) {
+        if (isset($attributes['logo']) && $attributes['logo'] instanceof \Illuminate\Http\UploadedFile) {
             $logo = $attributes['logo'];
             unset($attributes['logo']);
         }

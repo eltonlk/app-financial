@@ -21,12 +21,13 @@ class BankLogoUploadListener
         $logo = $event->getLogo();
 
         if ($logo) {
-            $filename = $bank->created_at != $bank->updated_at ? $bank->logo : md5(time()) . '.' . $logo->guessExtension();
+            $filename = $bank->created_at != $bank->updated_at ? $bank->logo : md5(microtime(true)) . '.' . $logo->guessExtension();
 
             \Storage::disk('public')->putFileAs(Bank::logosPath(), $logo, $filename);
 
-            $bank->logo = $filename;
-            $bank->save();
+            if ($bank->created_at == $bank->updated_at) {
+                $this->repository->update([ 'logo' => $filename ], $bank->id);
+            }
         }
     }
 }

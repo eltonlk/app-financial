@@ -3,7 +3,8 @@
 /storage/*.key
 /vendor
 /.idea
+.DS_Store
+.env
 Homestead.json
 Homestead.yaml
-.env
 resources/assets/app/js/config.js

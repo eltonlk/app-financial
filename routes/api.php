@@ -17,6 +17,10 @@ Route::group([
             'except' => [ 'create', 'edit' ]
         ]);
 
+        Route::resource('banks', 'BanksController', [
+            'only' => [ 'index' ]
+        ]);
+
         Route::post('revoke_token', 'AuthController@revokeToken')->name('revoke_token');
 
         Route::get('user', function (Request $request) {

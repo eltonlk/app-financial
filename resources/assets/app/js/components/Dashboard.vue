@@ -1,5 +1,12 @@
 <template>
-    <h1>Dashboard</h1>
+    <nav class="grey lighten-4 black-text">
+        <div class="container">
+            <div class="nav-wrapper">
+                <h4 class="left">Dashboard</h4>
+            </div>
+        </div>
+    </nav>
+    <br>
 </template>
 
 <script type="text/javascript">

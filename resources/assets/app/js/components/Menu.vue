@@ -54,7 +54,8 @@
         data () {
             return {
                 links: [
-                    { label: 'Dashboard', routeName: 'dashboard' }
+                    { label: 'Dashboard'       , routeName: 'dashboard' },
+                    { label: 'Contas Correntes', routeName: 'bank_account.list' }
                 ],
                 user: Auth.user
             };

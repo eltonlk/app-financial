@@ -1,5 +1,9 @@
 <template>
     <div id="app">
+        <div class="page-loading page-loading-fixed" v-if="loading">
+            <div class="indeterminate"></div>
+        </div>
+
         <header v-if="showHeader">
             <menu-component></menu-component>
         </header>
@@ -31,8 +35,15 @@
                 return this.user.check && this.$route.name != 'auth.login';
             }
         },
+        created () {
+            window.Vue.http.interceptors.unshift((request, next) => {
+                this.loading = true;
+                next(() => this.loading = false);
+            });
+        },
         data () {
             return {
+                loading: false,
                 year: new Date().getFullYear(),
                 user: Auth.user
             }

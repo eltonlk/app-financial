@@ -14,23 +14,28 @@
     </nav>
     <br>
     <div class="container">
-        <div class="row">
-            <div v-for="bank_account in bank_accounts" class="col s12 m4">
-                <div class="card grey lighten-5">
-                    <div class="card-content">
-                        <span class="card-title">
-                            {{ bank_account.name }}
-                        </span>
-                        <p class="grey-text">
-                            Agência: {{ bank_account.agency }} | Conta: {{ bank_account.account }}
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a v-link="{ name: 'bank_account.update', params: { id: bank_account.id } }">Editar</a>
-                        <a href="#" @click.prevent="destroy(bank_account)" class="red-text">Excluir</a>
-                    </div>
-                </div>
-            </div>
+        <div class="card-panel z-depth-5">
+            <table class="bordered striped highlight responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Agência</th>
+                        <th>C/C</th>
+                        <th class="center-align">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="bank_account in bank_accounts">
+                        <td>{{ bank_account.name }}</td>
+                        <td>{{ bank_account.agency }}</td>
+                        <td>{{ bank_account.account }}</td>
+                        <td class="right-align">
+                            <a v-link="{ name: 'bank_account.update', params: { id: bank_account.id } }">Editar</a> |
+                            <a href="#" @click.prevent="destroy(bank_account)" class="red-text">Excluir</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>

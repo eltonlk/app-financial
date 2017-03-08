@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import {BankAccounts} from "../../services/resources";
+    import {BankAccount} from "../../services/resources";
 
     export default {
         data () {
@@ -45,14 +45,14 @@
             };
         },
         ready () {
-            BankAccounts.query()
+            BankAccount.query()
                 .then((response) => {
-                    this.bank_accounts = response.data;
+                    this.bank_accounts = response.data.data;
                 });
         },
         methods: {
             destroy (bank_account) {
-                BankAccounts.delete({ id: bank_account.id })
+                BankAccount.delete({ id: bank_account.id })
                     .then((response) => {
                         this.bank_accounts.$remove(bank_account);
                     });

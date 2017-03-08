@@ -61,7 +61,7 @@
 </template>
 
 <script>
-    import {BankAccounts, Banks}  from "../../services/resources";
+    import {Bank, BankAccount}    from "../../services/resources";
     import ErrorMessagesComponent from "../shared/errorMessages.vue";
 
     export default {
@@ -81,14 +81,14 @@
             };
         },
         ready () {
-            Banks.query()
+            Bank.query()
                 .then((response) => {
                     this.banks = response.data;
                 });
         },
         methods: {
             submit () {
-                BankAccounts.save(this.bank_account)
+                BankAccount.save(this.bank_account)
                     .then((response) => {
                         this.$router.go({ name: 'bank_account.list' });
                     })

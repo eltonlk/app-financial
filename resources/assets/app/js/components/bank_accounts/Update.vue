@@ -60,7 +60,7 @@
 </template>
 
 <script>
-    import {BankAccounts, Banks}  from "../../services/resources";
+    import {Bank, BankAccount}    from "../../services/resources";
     import ErrorMessagesComponent from "../shared/errorMessages.vue";
 
     export default {
@@ -82,19 +82,19 @@
         ready () {
             let id = this.$route.params.id;
 
-            Banks.query()
+            Bank.query()
                 .then((response) => {
                     this.banks = response.data;
                 });
 
-            BankAccounts.get({ id: id })
+            BankAccount.get({ id: id })
                 .then((response) => {
-                    this.bank_account = response.data;
+                    this.bank_account = response.data.data;
                 });
         },
         methods: {
             submit () {
-                BankAccounts.update({ id: this.bank_account.id }, this.bank_account)
+                BankAccount.update({ id: this.bank_account.id }, this.bank_account)
                     .then((response) => {
                         this.$router.go({ name: 'bank_account.list' });
                     })

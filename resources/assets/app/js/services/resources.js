@@ -17,13 +17,13 @@ export class Jwt {
     }
 }
 
-let BankAccounts = Vue.resource("bank_accounts{/id}");
+let BankAccount = Vue.resource("bank_accounts{/id}");
 
-export {BankAccounts};
+export {BankAccount};
 
-let Banks = Vue.resource("banks{/id}");
+let Bank = Vue.resource("banks");
 
-export {Banks};
+export {Bank};
 
 let User = Vue.resource("user");
 

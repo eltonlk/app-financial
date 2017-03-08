@@ -22,9 +22,11 @@ class BankAccountTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-
-            /* place your other model properties here */
-
+            'bank_id'    => $model->bank_id,
+            'name'       => $model->name,
+            'agency'     => $model->agency,
+            'account'    => $model->account,
+            'default'    => (bool) $model->default,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];

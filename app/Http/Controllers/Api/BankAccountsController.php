@@ -20,7 +20,7 @@ class BankAccountsController extends Controller
 
     public function index()
     {
-        return $this->repository->all();
+        return $this->repository->paginate();
     }
 
     public function store(BankAccountCreateRequest $request)

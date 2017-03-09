@@ -36,31 +36,53 @@
                     </tr>
                 </tbody>
             </table>
+
+            <pagination-component :current-page.sync="pagination.current_page" :per-page="pagination.per_page" :total.sync="pagination.total"></pagination-component>
         </div>
     </div>
 </template>
 
 <script>
-    import {BankAccount} from "../../services/resources";
+    import {BankAccount}       from "../../services/resources";
+    import PaginationComponent from "../shared/Pagination.vue";
 
     export default {
+        components: {
+            PaginationComponent
+        },
         data () {
             return {
-                bank_accounts: []
+                bank_accounts: [],
+                pagination: {
+                    current_page: 1,
+                    per_page: 0,
+                    total: 0
+                }
             };
         },
+        events: {
+            'pagination::changed' (page) {
+                this.getBankAccounts();
+            }
+        },
         ready () {
-            BankAccount.query()
-                .then((response) => {
-                    this.bank_accounts = response.data.data;
-                });
+            this.getBankAccounts();
         },
         methods: {
             destroy (bank_account) {
                 BankAccount.delete({ id: bank_account.id })
                     .then((response) => {
-                        this.bank_accounts.$remove(bank_account);
+                        this.getBankAccounts();
                     });
+            },
+            getBankAccounts () {
+                BankAccount.query({
+                    page: this.pagination.current_page
+                })
+                .then((response) => {
+                    this.bank_accounts = response.data.data;
+                    this.pagination = response.data.meta.pagination;
+                });
             }
         }
     }

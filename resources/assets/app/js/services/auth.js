@@ -4,36 +4,36 @@ import {User}       from "./resources";
 
 const USER = "user";
 
-const afterLogin = function () {
-    this.user.check = true;
-
-    User.get()
-        .then((response) => {
-            this.user.data = response.data;
-        });
-};
-
-const afterLogout = function () {
-    this.clear();
-};
-
 export default {
     clear () {
         this.user.data  = null;
         this.user.check = false;
     },
     login (email, password) {
-        let afterLoginContext = afterLogin.bind(this);
+        let afterLogin = (response) => {
+            this.user.check = true;
+
+            User.get()
+                .then((response) => {
+                    this.user.data = response.data;
+                });
+
+            return response;
+        };
 
         return JwtToken.accessToken(email, password)
-            .then(afterLoginContext);
+            .then(afterLogin);
     },
     logout () {
-        let afterLogoutContext = afterLogout.bind(this);
+        let afterLogout = (response) => {
+            this.clear();
+
+            return response;
+        };
 
         return JwtToken.revokeToken()
-            .then(afterLogoutContext)
-            .catch(afterLogoutContext);
+            .then(afterLogout)
+            .catch(afterLogout);
     },
     user: {
         set data (value) {

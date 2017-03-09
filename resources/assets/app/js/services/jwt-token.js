@@ -14,23 +14,28 @@ export default {
         return Jwt.accessToken(email, password)
             .then((response) => {
               this.token = response.data.token;
+
               return response;
             });
-    },
-    afterRekoveToken () {
-        this.token = null;
     },
     refreshToken () {
         return Jwt.refreshToken()
             .then((response) => {
               this.token = response.data.token;
+
               return response;
             });
     },
     revokeToken () {
+        let afterRekoveToken = (response) => {
+            this.token = null;
+
+            return response;
+        };
+
         return Jwt.revokeToken()
-            .then(this.afterRekoveToken())
-            .catch(this.afterRekoveToken());
+            .then(afterRekoveToken)
+            .catch(afterRekoveToken);
     },
     getAuthorizationHeader () {
         return `Bearer ${this.token}`;

@@ -18,9 +18,14 @@
             <table class="bordered striped highlight responsive-table">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Agência</th>
-                        <th>C/C</th>
+                        <th v-for="(column, options) in table.headers" :width="options.width">
+                            <a href="#" @click.prevent="sortBy(column)">
+                                {{ options.label }}
+                                <i class="material-icons right" v-if="order.column == column">
+                                    {{ order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                                </i>
+                            </a>
+                        </th>
                         <th class="center-align">Ações</th>
                     </tr>
                 </thead>
@@ -57,6 +62,26 @@
                     current_page: 1,
                     per_page: 0,
                     total: 0
+                },
+                order: {
+                    column: 'name',
+                    sort: 'asc'
+                },
+                table: {
+                    headers: {
+                        name: {
+                            label: 'Nome',
+                            width: '50%'
+                        },
+                        agency: {
+                            label: 'Agência',
+                            width: '15%'
+                        },
+                        account: {
+                            label: 'C/C',
+                            width: '15%'
+                        }
+                    }
                 }
             };
         },
@@ -77,12 +102,20 @@
             },
             getBankAccounts () {
                 BankAccount.query({
-                    page: this.pagination.current_page
+                    page: this.pagination.current_page,
+                    orderBy: this.order.column,
+                    sortedBy: this.order.sort
                 })
                 .then((response) => {
                     this.bank_accounts = response.data.data;
                     this.pagination = response.data.meta.pagination;
                 });
+            },
+            sortBy (column) {
+                this.order.column = column;
+                this.order.sort = this.order.sort == 'asc' ? 'desc' : 'asc';
+
+                this.getBankAccounts();
             }
         }
     }

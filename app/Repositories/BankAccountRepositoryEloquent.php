@@ -10,7 +10,12 @@ use AppFinancial\Presenters\BankAccountPresenter;
 
 class BankAccountRepositoryEloquent extends BaseRepository implements BankAccountRepository
 {
-    // protected $skipPresenter = true;
+    protected $fieldSearchable = [
+        'name'      => 'like',
+        'agency'    => 'like',
+        'account'   => 'like',
+        'bank.name' => 'like'
+    ];
 
     public function model()
     {

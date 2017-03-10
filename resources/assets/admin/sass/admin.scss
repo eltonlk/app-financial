@@ -19,3 +19,16 @@
 main {
   flex: 1 0 auto;
 }
+
+.filter-group {
+  .btn {
+    float: right;
+    height: 3rem;
+    line-height: 3rem;
+  }
+
+  .filter-wrapper {
+    overflow: hidden;
+    padding-right: 10px;
+  }
+}

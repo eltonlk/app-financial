@@ -11,6 +11,10 @@ use AppFinancial\Models\Bank;
 
 class BankRepositoryEloquent extends BaseRepository implements BankRepository
 {
+    protected $fieldSearchable = [
+        'name' => 'like'
+    ];
+
     public function model()
     {
         return Bank::class;

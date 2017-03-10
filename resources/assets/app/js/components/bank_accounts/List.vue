@@ -15,6 +15,8 @@
     <br>
     <div class="container">
         <div class="card-panel z-depth-5">
+            <filter-component></filter-component>
+
             <table class="bordered striped highlight responsive-table">
                 <thead>
                     <tr>
@@ -49,10 +51,12 @@
 
 <script>
     import {BankAccount}       from "../../services/resources";
+    import FilterComponent     from "../shared/Filter.vue";
     import PaginationComponent from "../shared/Pagination.vue";
 
     export default {
         components: {
+            FilterComponent,
             PaginationComponent
         },
         data () {
@@ -67,6 +71,7 @@
                     column: 'name',
                     sort: 'asc'
                 },
+                search: '',
                 table: {
                     headers: {
                         name: {
@@ -86,6 +91,11 @@
             };
         },
         events: {
+            'filter::submit' (search) {
+                this.search = search;
+
+                this.getBankAccounts();
+            },
             'pagination::changed' (page) {
                 this.getBankAccounts();
             }
@@ -104,7 +114,8 @@
                 BankAccount.query({
                     page: this.pagination.current_page,
                     orderBy: this.order.column,
-                    sortedBy: this.order.sort
+                    sortedBy: this.order.sort,
+                    search: this.search
                 })
                 .then((response) => {
                     this.bank_accounts = response.data.data;

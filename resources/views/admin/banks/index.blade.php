@@ -6,6 +6,8 @@
 
         <a href="{{ route('admin.banks.create') }}" class="btn waves-effect">Adicionar</a>
 
+        @include('shared.filter')
+
         <table class="bordered striped highlight responsive-table">
             <thead>
                 <tr>

@@ -11,7 +11,7 @@
         </ul>
 
         <div class="card-panel z-depth-5">
-            <filter-component></filter-component>
+            <filter-component @on-submit="filter" :model.sync="search"></filter-component>
 
             <table class="bordered striped highlight responsive-table">
                 <thead>
@@ -89,11 +89,6 @@
             };
         },
         events: {
-            'filter::submit' (search) {
-                this.search = search;
-
-                this.getBankAccounts();
-            },
             'pagination::changed' (page) {
                 this.getBankAccounts();
             }
@@ -107,6 +102,9 @@
                     .then((response) => {
                         this.getBankAccounts();
                     });
+            },
+            filter () {
+                this.getBankAccounts();
             },
             getBankAccounts () {
                 BankAccount.query({

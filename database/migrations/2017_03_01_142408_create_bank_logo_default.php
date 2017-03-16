@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use AppFinancial\Models\Bank;
+
 class CreateBankLogoDefault extends Migration
 {
     public function up()
@@ -20,10 +22,10 @@ class CreateBankLogoDefault extends Migration
 
     public function down()
     {
-        $filename = storage_path('app/public/banks/images/' . env('BANK_LOGO_DEFAULT'));
+        $filename = env('BANK_LOGO_DEFAULT');
 
-        if (file_exists($filename)) {
-            unlink($filename);
-        }
+        $path = Bank::logosPath() . '/' . $filename;
+
+        \Storage::disk('public')->delete($path);
     }
 }

@@ -29,6 +29,9 @@ class BankRepositoryEloquent extends BaseRepository implements BankRepository
     public function create(array $attributes)
     {
         $logo = null;
+        $skipPresenter = $this->skipPresenter;
+
+        $this->skipPresenter(true);
 
         if (isset($attributes['logo'])) {
             $logo = $attributes['logo'];
@@ -40,12 +43,17 @@ class BankRepositoryEloquent extends BaseRepository implements BankRepository
 
         event(new BankStoredEvent($model, $logo));
 
+        $this->skipPresenter = $skipPresenter;
+
         return $model;
     }
 
     public function update(array $attributes, $id)
     {
         $logo = null;
+        $skipPresenter = $this->skipPresenter;
+
+        $this->skipPresenter(true);
 
         if (isset($attributes['logo']) && $attributes['logo'] instanceof \Illuminate\Http\UploadedFile) {
             $logo = $attributes['logo'];
@@ -56,15 +64,23 @@ class BankRepositoryEloquent extends BaseRepository implements BankRepository
 
         event(new BankStoredEvent($model, $logo));
 
+        $this->skipPresenter = $skipPresenter;
+
         return $model;
     }
 
     public function delete($id) {
+        $skipPresenter = $this->skipPresenter;
+
+        $this->skipPresenter(true);
+
         $model = $this->find($id);
 
         $deleted = parent::delete($id);
 
         event(new BankDestroyedEvent($model));
+
+        $this->skipPresenter = $skipPresenter;
 
         return $deleted;
     }

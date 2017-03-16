@@ -2,9 +2,11 @@
 
 namespace AppFinancial\Listeners;
 
-use AppFinancial\Events\BankDestroyedEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+
+use AppFinancial\Models\Bank;
+use AppFinancial\Events\BankDestroyedEvent;
 
 class BankLogoRemoveListener
 {
@@ -16,8 +18,8 @@ class BankLogoRemoveListener
     {
         $bank = $event->getBank();
 
-        if ($bank->logo != env('BANK_LOGO_DEFAULT') && file_exists(storage_path('app/public/banks/images/' . $bank->logo))) {
-            unlink(storage_path('app/public/banks/images/' . $bank->logo));
-        }
+        $path = Bank::logosPath() . '/' . $bank->logo;
+
+        \Storage::disk('public')->delete($path);
     }
 }

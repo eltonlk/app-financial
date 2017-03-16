@@ -18,6 +18,7 @@ class InsertBanks extends Migration
     public function down()
     {
         $repository = app(\AppFinancial\Repositories\BankRepository::class);
+        $repository->skipPresenter(true);
 
         foreach ($repository->all() as $bank) {
             $repository->delete($bank->id);

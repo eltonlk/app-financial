@@ -1,19 +1,15 @@
 <template>
-    <nav class="grey lighten-4 black-text">
-        <div class="container">
-            <div class="nav-wrapper">
-                <h4 class="left">Contas Correntes</h4>
-
-                <ul class="right">
-                    <li>
-                        <a v-link="{ name: 'bank_account.create'}" class="waves-effect waves-light btn">Adicionar</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <br>
     <div class="container">
+        <page-title-component>
+            <h5>Contas Correntes</h5>
+        </page-title-component>
+
+        <ul>
+            <li>
+                <a v-link="{ name: 'bank_account.create'}" class="waves-effect waves-light btn">Adicionar</a>
+            </li>
+        </ul>
+
         <div class="card-panel z-depth-5">
             <filter-component></filter-component>
 
@@ -52,11 +48,13 @@
 <script>
     import {BankAccount}       from "../../services/resources";
     import FilterComponent     from "../shared/Filter.vue";
+    import PageTitleComponent  from "../shared/PageTitle.vue";
     import PaginationComponent from "../shared/Pagination.vue";
 
     export default {
         components: {
             FilterComponent,
+            PageTitleComponent,
             PaginationComponent
         },
         data () {

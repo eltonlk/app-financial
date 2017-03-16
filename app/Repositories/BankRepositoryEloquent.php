@@ -8,6 +8,7 @@ use AppFinancial\Repositories\BankRepository;
 use AppFinancial\Events\BankDestroyedEvent;
 use AppFinancial\Events\BankStoredEvent;
 use AppFinancial\Models\Bank;
+use AppFinancial\Presenters\BankPresenter;
 
 class BankRepositoryEloquent extends BaseRepository implements BankRepository
 {
@@ -66,6 +67,11 @@ class BankRepositoryEloquent extends BaseRepository implements BankRepository
         event(new BankDestroyedEvent($model));
 
         return $deleted;
+    }
+
+    public function presenter()
+    {
+        return BankPresenter::class;
     }
 }
 

@@ -15,6 +15,7 @@ class BanksController extends Controller
     public function __construct(BankRepository $repository)
     {
         $this->repository = $repository;
+        $this->repository->skipPresenter(true);
     }
 
     public function index()

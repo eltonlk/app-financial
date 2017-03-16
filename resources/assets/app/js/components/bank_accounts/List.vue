@@ -100,7 +100,11 @@
             destroy (bank_account) {
                 BankAccount.delete({ id: bank_account.id })
                     .then((response) => {
-                        this.getBankAccounts();
+                        if (this.bank_accounts.length === 1 && this.pagination.current_page > 1) {
+                            this.pagination.current_page--;
+                        } else {
+                            this.getBankAccounts();
+                        }
                     });
             },
             filter () {

@@ -4,12 +4,6 @@
             <h5>Contas Correntes</h5>
         </page-title-component>
 
-        <ul>
-            <li>
-                <a v-link="{ name: 'bank_account.create'}" class="waves-effect waves-light btn">Adicionar</a>
-            </li>
-        </ul>
-
         <div class="card-panel z-depth-5">
             <filter-component @on-submit="filter" :model.sync="search"></filter-component>
 
@@ -41,6 +35,12 @@
             </table>
 
             <pagination-component :current-page.sync="pagination.current_page" :per-page="pagination.per_page" :total.sync="pagination.total"></pagination-component>
+
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large" v-link="{ name: 'bank_account.create'}">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -104,6 +104,8 @@
                     });
             },
             filter () {
+                this.pagination.current_page = 1;
+
                 this.getBankAccounts();
             },
             getBankAccounts () {

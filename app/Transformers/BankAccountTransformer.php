@@ -11,7 +11,7 @@ class BankAccountTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-            'bank_id'    => $model->bank_id,
+            'bank_id'    => (int) $model->bank_id,
             'name'       => $model->name,
             'agency'     => $model->agency,
             'account'    => $model->account,

@@ -1,0 +1,57 @@
+<div class="container">
+    <page-title-component>
+        <h5>{{ title }}</h5>
+    </page-title-component>
+
+    <div class="row">
+        <div class="col m8 offset-m2 card-panel">
+            <form name="form" method="GET" @submit.prevent="submit">
+                <error-messages-component :errors="errorMessages"></error-messages-component>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select class="browser-default" v-model="bank_account.bank_id">
+                            <option v-for="bank in banks" :value="bank.id">{{ bank.name }}</option>
+                        </select>
+                        <label for="bank_id" class="active">Banco</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="name" v-model="bank_account.name">
+                        <label for="name" class="active">Nome</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" id="agency" v-model="bank_account.agency">
+                        <label for="agency" class="active">Agência</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" id="account" v-model="bank_account.account">
+                        <label for="account" class="active">Conta</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="checkbox" name="default" class="filled-in" id="account_default" v-model="bank_account.default">
+                        <label for="account_default">Definir como padrão</label>
+                    </div>
+                </div>
+
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large grey" v-link="{ name: 'bank_account.list'}">
+                        <i class="large material-icons">arrow_back</i>
+                    </a>
+                    <br><br>
+                    <button type="submit" class="btn-floating btn-large">
+                        <i class="large material-icons">save</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,7 @@
                 @foreach($banks as $bank)
                     <tr>
                         <td>{{ $bank->id }}</td>
-                        <td><img src="{{ asset('storage/banks/images/' . $bank->logo) }}" width="24" /></td>
+                        <td><img src="{{ asset('storage/banks/images/' . $bank->logo) }}" class="bank-logo" /></td>
                         <td>{{ $bank->name }}</td>
                         <td>
                             <a href="{{ route('admin.banks.edit', $bank->id) }}">Editar</a>

@@ -14,6 +14,15 @@ class EventServiceProvider extends ServiceProvider
         'AppFinancial\Events\BankDestroyedEvent' => [
             'AppFinancial\Listeners\BankLogoRemoveListener',
         ],
+        'AppFinancial\Events\BankDestroyedEvent' => [
+            'AppFinancial\Listeners\BankLogoRemoveListener',
+        ],
+        'Prettus\Repository\Events\RepositoryEntityCreated' => [
+            'AppFinancial\Listeners\BankAccountSetDefaultListener'
+        ],
+        'Prettus\Repository\Events\RepositoryEntityUpdated' => [
+            'AppFinancial\Listeners\BankAccountSetDefaultListener'
+        ]
     ];
 
     public function boot()

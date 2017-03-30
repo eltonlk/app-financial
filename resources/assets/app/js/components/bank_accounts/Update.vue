@@ -30,10 +30,13 @@
         },
         methods: {
             getBankAccount (id)  {
-                BankAccount.get({ id: id })
-                    .then((response) => {
-                        this.bank_account = response.data.data;
-                    });
+                BankAccount.get({
+                    id: id,
+                    include: 'bank'
+                })
+                .then((response) => {
+                    this.bank_account = response.data.data;
+                });
             },
             getBanks () {
                 Bank.query()
@@ -68,13 +71,10 @@
                     }
                 });
 
-                let bank = _.filter(self.banks, (object) => {
-                    return object.id === self.bank_account.bank_id;
-                }).map((object) => {
-                    return { id: object.id, text: object.name };
-                })[0];
-
-                bankIdAutocomplete.setValue(bank);
+                bankIdAutocomplete.setValue({
+                    id: this.bank_account.bank.data.id,
+                    text: this.bank_account.bank.data.name
+                });
             },
             submit () {
                 BankAccount.update({ id: this.bank_account.id }, this.bank_account)

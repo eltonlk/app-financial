@@ -34,10 +34,13 @@
         },
         methods: {
             getBill (id)  {
-                Bill.get({ id: id })
-                    .then((response) => {
-                        this.bill = response.data.data;
-                    });
+                Bill.get({
+                    id: id,
+                    include: 'bank_account'
+                })
+                .then((response) => {
+                    this.bill = response.data.data;
+                });
             },
             getBankAccounts () {
                 BankAccount.query()
@@ -72,13 +75,10 @@
                     }
                 });
 
-                let bankAccount = _.filter(self.bankAccounts, (object) => {
-                    return object.id === self.bill.bank_account_id;
-                }).map((object) => {
-                    return { id: object.id, text: object.name };
-                })[0];
-
-                bankAccountIdAutocomplete.setValue(bankAccount);
+                bankAccountIdAutocomplete.setValue({
+                    id: this.bill.bank_account.data.id,
+                    text: this.bill.bank_account.data.name
+                });
             },
             submit () {
                 Bill.update({ id: this.bill.id }, this.bill)

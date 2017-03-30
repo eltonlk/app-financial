@@ -2,6 +2,10 @@ import appConfig from "./services/appConfig";
 
 require("materialize-css");
 
+import 'materialize-autocomplete';
+
+window._ = require('lodash');
+
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean

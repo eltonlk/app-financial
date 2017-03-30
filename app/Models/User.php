@@ -36,4 +36,9 @@ class User extends Authenticatable implements JWTSubject
             ],
         ];
     }
+
+    public function client ()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

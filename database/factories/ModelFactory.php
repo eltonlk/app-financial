@@ -24,3 +24,9 @@ $factory->define(AppFinancial\Models\BankAccount::class, function (Faker\Generat
         'account' => rand(70000, 260000) . '-' . rand(0, 9)
     ];
 });
+
+$factory->define(AppFinancial\Models\Client::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name
+    ];
+});

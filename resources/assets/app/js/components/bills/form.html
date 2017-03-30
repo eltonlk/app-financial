@@ -1,0 +1,56 @@
+<div class="container">
+    <page-title-component>
+        <h5>{{ title }}</h5>
+    </page-title-component>
+
+    <div class="row">
+        <div class="col m8 offset-m2 card-panel">
+            <form name="form" method="GET" @submit.prevent="submit">
+                <error-messages-component :errors="errorMessages"></error-messages-component>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="description" v-model="bill.description">
+                        <label for="description" class="active">Descrição</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="date" id="due_at" v-model="bill.due_at">
+                        <label for="due_at" class="active">Vencimento</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" id="amount" v-model="bill.amount">
+                        <label for="amount" class="active">Valor</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="bank_account_id" class="autocomplete" autocomplete="off" data-activates="bank_account_id_dropdown" data-beloworigin="true">
+                        <ul id="bank_account_id_dropdown" class="dropdown-content ac-dropdown"></ul>
+                        <label for="bank_account_id" class="active">Conta Bancária</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="checkbox" name="paid" class="filled-in" id="bill_paid" v-model="bill.paid">
+                        <label for="bill_paid">Pago?</label>
+                    </div>
+                </div>
+
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large grey" v-link="linkToBack">
+                        <i class="large material-icons">arrow_back</i>
+                    </a>
+                    <br><br>
+                    <button type="submit" class="btn-floating btn-large">
+                        <i class="large material-icons">save</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

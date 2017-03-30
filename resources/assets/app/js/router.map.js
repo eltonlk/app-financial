@@ -1,13 +1,19 @@
 import BankAccountsCreateComponent from "./components/bank_accounts/Create.vue";
 import BankAccountsListComponent   from "./components/bank_accounts/List.vue";
 import BankAccountsUpdateComponent from "./components/bank_accounts/Update.vue";
+import BillPayCreateComponent      from "./components/bills/pays/Create.vue";
+import BillPayUpdateComponent      from "./components/bills/pays/Update.vue";
+import BillsPaysComponent          from "./components/bills/pays/List.vue";
+import BillReceiveCreateComponent  from "./components/bills/receives/Create.vue";
+import BillReceiveUpdateComponent  from "./components/bills/receives/Update.vue";
+import BillsReceivesComponent      from "./components/bills/receives/List.vue";
 import DashboardComponent          from "./components/Dashboard.vue";
 import LoginComponent              from "./components/Login.vue";
 import LogoutComponent             from "./components/Logout.vue";
 
 export default {
     "/bank_accounts": {
-        name: "bank_account.list",
+        name: "bank_accounts",
         component: BankAccountsListComponent,
         auth: true
     },
@@ -19,6 +25,36 @@ export default {
     "/bank_accounts/:id/update": {
         name: "bank_account.update",
         component: BankAccountsUpdateComponent,
+        auth: true
+    },
+    "/bills/pay/create": {
+        name: "bill.pay.create",
+        component: BillPayCreateComponent,
+        auth: true
+    },
+    "/bills/pay/:id/update": {
+        name: "bill.pay.update",
+        component: BillPayUpdateComponent,
+        auth: true
+    },
+    "/bills/pays": {
+        name: "bills.pays",
+        component: BillsPaysComponent,
+        auth: true
+    },
+    "/bills/receive/create": {
+        name: "bill.receive.create",
+        component: BillReceiveCreateComponent,
+        auth: true
+    },
+    "/bills/receive/:id/update": {
+        name: "bill.receive.update",
+        component: BillReceiveUpdateComponent,
+        auth: true
+    },
+    "/bills/receives": {
+        name: "bills.receives",
+        component: BillsReceivesComponent,
         auth: true
     },
     "/dashboard": {

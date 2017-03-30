@@ -25,6 +25,10 @@ let Bank = Vue.resource("banks");
 
 export {Bank};
 
+let Bill = Vue.resource("bills{/id}");
+
+export {Bill};
+
 let User = Vue.resource("user");
 
 export {User};

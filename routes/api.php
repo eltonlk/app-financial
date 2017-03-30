@@ -21,6 +21,10 @@ Route::group([
             'only' => [ 'index' ]
         ]);
 
+        Route::resource('bills', 'BillsController', [
+            'except' => [ 'create', 'edit' ]
+        ]);
+
         Route::post('revoke_token', 'AuthController@revokeToken')->name('revoke_token');
 
         Route::get('user', function (Request $request) {

@@ -16,7 +16,7 @@
                     </a>
 
                     <ul class="right hide-on-med-and-down">
-                        <li v-for="link in links">
+                        <li v-for="link in links" :class="$route.name == link.routeName ? 'active' : ''">
                             <a v-link="{ name: link.routeName }">{{ link.label }}</a>
                         </li>
                         <li>
@@ -55,7 +55,9 @@
             return {
                 links: [
                     { label: 'Dashboard'       , routeName: 'dashboard' },
-                    { label: 'Contas Correntes', routeName: 'bank_account.list' }
+                    { label: 'Contas a Pagar'  , routeName: 'bills.pays' },
+                    { label: 'Contas a Receber', routeName: 'bills.receives' },
+                    { label: 'Contas Correntes', routeName: 'bank_accounts' }
                 ],
                 user: Auth.user
             };

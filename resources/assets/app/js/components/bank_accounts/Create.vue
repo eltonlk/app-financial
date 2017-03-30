@@ -39,28 +39,26 @@
             initBankAutocomplete () {
                 let self = this;
 
-                $(document).ready(() => {
-                    $('#bank_id').materialize_autocomplete({
-                        limit: 10,
-                        multiple: {
-                            enable: false
-                        },
-                        dropdown: {
-                            el: '#bank_id_dropdown'
-                        },
-                        getData (value, callback) {
-                            let banks = _.filter(self.banks, (object) => {
-                                return _.includes(object.name.toLowerCase(), value.toLowerCase());
-                            }).map((object) => {
-                                return { id: object.id, text: object.name };
-                            });
+                $('#bank_id').materialize_autocomplete({
+                    limit: 10,
+                    multiple: {
+                        enable: false
+                    },
+                    dropdown: {
+                        el: '#bank_id_dropdown'
+                    },
+                    getData (value, callback) {
+                        let banks = _.filter(self.banks, (object) => {
+                            return _.includes(object.name.toLowerCase(), value.toLowerCase());
+                        }).map((object) => {
+                            return { id: object.id, text: object.name };
+                        });
 
-                            callback(value, banks);
-                        },
-                        onSelect (item) {
-                            self.bank_account.bank_id = item.id;
-                        }
-                    });
+                        callback(value, banks);
+                    },
+                    onSelect (item) {
+                        self.bank_account.bank_id = item.id;
+                    }
                 });
             },
             submit () {

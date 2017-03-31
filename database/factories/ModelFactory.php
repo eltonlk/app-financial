@@ -30,3 +30,9 @@ $factory->define(AppFinancial\Models\Client::class, function (Faker\Generator $f
         'name' => $faker->name
     ];
 });
+
+$factory->define(AppFinancial\Models\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name
+    ];
+});

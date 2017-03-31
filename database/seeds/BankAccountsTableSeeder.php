@@ -2,8 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
+use AppFinancial\Traits\GetClientsTrait;
+
 class BankAccountsTableSeeder extends Seeder
 {
+    use GetClientsTrait;
+
     public function run()
     {
         $clients = $this->getClients();
@@ -33,13 +37,6 @@ class BankAccountsTableSeeder extends Seeder
     private function getBanks ()
     {
         $repository = app(\AppFinancial\Repositories\BankRepository::class);
-        $repository->skipPresenter(true);
-        return $repository->all();
-    }
-
-    private function getClients ()
-    {
-        $repository = app(\AppFinancial\Repositories\ClientRepository::class);
         $repository->skipPresenter(true);
         return $repository->all();
     }

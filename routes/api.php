@@ -25,6 +25,10 @@ Route::group([
             'except' => [ 'create', 'edit' ]
         ]);
 
+        Route::resource('categories', 'CategoriesController', [
+            'except' => [ 'create', 'edit' ]
+        ]);
+
         Route::post('revoke_token', 'AuthController@revokeToken')->name('revoke_token');
 
         Route::get('user', function (Request $request) {

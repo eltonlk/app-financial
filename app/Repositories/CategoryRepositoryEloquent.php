@@ -49,7 +49,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
             $this->skipPresenter(true);
 
             $child = $this->find($id);
-            $child->parent_id = $attributes['parent_id']
+            $child->parent_id = $attributes['parent_id'];
             $child->save();
 
             $this->skipPresenter = $skipPresenter;

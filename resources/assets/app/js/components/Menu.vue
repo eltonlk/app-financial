@@ -57,7 +57,8 @@
                     { label: 'Dashboard'       , routeName: 'dashboard' },
                     { label: 'Contas a Pagar'  , routeName: 'bills.pays' },
                     { label: 'Contas a Receber', routeName: 'bills.receives' },
-                    { label: 'Contas Correntes', routeName: 'bank_accounts' }
+                    { label: 'Contas Correntes', routeName: 'bank_accounts' },
+                    { label: 'Categorias'      , routeName: 'categories' }
                 ],
                 user: Auth.user
             };

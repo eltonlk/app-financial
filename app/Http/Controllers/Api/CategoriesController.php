@@ -1,6 +1,6 @@
 <?php
 
-namespace AppFinancial\Http\Controllers;
+namespace AppFinancial\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 

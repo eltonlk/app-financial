@@ -29,6 +29,10 @@ let Bill = Vue.resource("bills{/id}");
 
 export {Bill};
 
+let Category = Vue.resource("categories{/id}");
+
+export {Category};
+
 let User = Vue.resource("user");
 
 export {User};

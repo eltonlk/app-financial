@@ -7,6 +7,9 @@ import BillsPaysComponent          from "./components/bills/pays/List.vue";
 import BillReceiveCreateComponent  from "./components/bills/receives/Create.vue";
 import BillReceiveUpdateComponent  from "./components/bills/receives/Update.vue";
 import BillsReceivesComponent      from "./components/bills/receives/List.vue";
+import CategoriesCreateComponent   from "./components/categories/Create.vue";
+import CategoriesListComponent     from "./components/categories/List.vue";
+import CategoriesUpdateComponent   from "./components/categories/Update.vue";
 import DashboardComponent          from "./components/Dashboard.vue";
 import LoginComponent              from "./components/Login.vue";
 import LogoutComponent             from "./components/Logout.vue";
@@ -55,6 +58,21 @@ export default {
     "/bills/receives": {
         name: "bills.receives",
         component: BillsReceivesComponent,
+        auth: true
+    },
+    "/categories": {
+        name: "categories",
+        component: CategoriesListComponent,
+        auth: true
+    },
+    "/categories/create": {
+        name: "category.create",
+        component: CategoriesCreateComponent,
+        auth: true
+    },
+    "/categories/:id/update": {
+        name: "category.update",
+        component: CategoriesUpdateComponent,
         auth: true
     },
     "/dashboard": {

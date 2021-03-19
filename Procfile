@@ -1,1 +1,2 @@
-api: cd backend && python manage.py runserver
+api: ./backend-entrypoint.sh
+web: echo 'Start frontend'

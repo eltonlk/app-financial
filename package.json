@@ -1,0 +1,21 @@
+{
+  "name": "app-financial",
+  "version": "1.0.0",
+  "description": "Financial Application",
+  "scripts": {
+    "start": "nf start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eltonlk/app-financial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eltonlk/app-financial/issues"
+  },
+  "homepage": "https://github.com/eltonlk/app-financial#readme",
+  "dependencies": {
+    "foreman": "^3.0.1"
+  }
+}

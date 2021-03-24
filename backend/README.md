@@ -12,6 +12,9 @@ Run server
 
     python manage.py runserver
 
+## API Docs
+
+* http:localhost:8000/
 
 ## Dependencies
 

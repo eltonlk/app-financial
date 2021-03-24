@@ -18,3 +18,4 @@ Run server
 * https://www.djangoproject.com/
 * https://www.django-rest-framework.org/
 * https://django-rest-framework-simplejwt.readthedocs.io
+* https://drf-yasg.readthedocs.io/

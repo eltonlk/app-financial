@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('bank_accounts.urls')),
-    path('', include('sessions.urls')),
+    path('bank_accounts/', include('bank_accounts.urls')),
+    path('sessions/', include('sessions.urls')),
 ]

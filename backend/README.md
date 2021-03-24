@@ -12,7 +12,7 @@ Create database
 
     psql -U postgres -h 0.0.0.0 -p 5432
 
-    CREATE DATABASE paguei;
+    CREATE DATABASE "app-financial";
     \q
 
 Migrade database

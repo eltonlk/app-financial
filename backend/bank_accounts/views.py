@@ -5,5 +5,5 @@ from .models import BankAccount
 from .serializers import BankAccountSerializer
 
 class BankAccountsViewSet(viewsets.ModelViewSet):
-    queryset = BankAccount.objects.all()
+    queryset = BankAccount.objects.all().order_by('name')
     serializer_class = BankAccountSerializer

@@ -1,50 +1,34 @@
 <template>
-    <div id="app">
+    <main>
         <header v-if="showHeader">
             <menu-component></menu-component>
         </header>
 
-        <main>
+        <section>
             <router-view></router-view>
-        </main>
+        </section>
 
-        <footer class="page-footer">
-            <div class="footer-copyright">
-                <div class="container">
-                </div>
-            </div>
+        <footer>
+            <h6>Footer</h6>
         </footer>
-    </div>
+    </main>
 </template>
 
-<script type="text/javascript">
+<script>
     import Auth          from "../services/auth";
     import MenuComponent from "./Menu.vue";
+
     export default {
         components: {
             MenuComponent
         },
         computed: {
             showHeader () {
-                return this.user.check && this.$route.name != 'auth.login';
-            }
-        },
-        data () {
-            return {
-                year: new Date().getFullYear(),
-                user: Auth.user
+                return Auth.user.check && this.$route.name != 'auth.login';
             }
         }
     };
 </script>
 
-<style type="text/css">
-    #app {
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-    main {
-      flex: 1 0 auto;
-    }
+<style scoped>
 </style>

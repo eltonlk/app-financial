@@ -2,7 +2,7 @@ import Vue         from 'vue'
 
 export class Jwt {
   static accessToken (username, password) {
-      return Vue.http.post("sessions/token", {
+      return Vue.http.post("sessions/token/", {
           username: username,
           password: password
       });
@@ -13,7 +13,7 @@ export class Jwt {
   }
 
   static revokeToken () {
-      return Vue.http.post("sessions/token/revoke");
+      return Vue.http.post("sessions/token/revoke/");
   }
 }
 

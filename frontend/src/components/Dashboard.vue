@@ -10,11 +10,7 @@
     </div>
 </template>
 
-<script type="text/javascript">
-    import Auth from "../services/auth";
+<script>
     export default {
-        ready () {
-            console.log(Auth.user.data);
-        }
     }
 </script>

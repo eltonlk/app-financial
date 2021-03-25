@@ -63,7 +63,7 @@
                         this.error.any = true;
                         switch (response.status) {
                             case 401:
-                                this.error.message = response.data.message;
+                                this.error.message = response.data.detail;
                                 break;
                             default:
                                 this.error.message = "Login failed.";

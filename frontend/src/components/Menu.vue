@@ -53,10 +53,8 @@
         data () {
             return {
                 links: [
-                    { label: 'Dashboard'  , routeName: 'dashboard' },
-                    { label: 'Assinaturas', routeName: 'subscription.list' },
-                    { label: 'Faturas'    , routeName: 'invoice.list' },
-                    { label: 'Produtos'   , routeName: 'product.list' }
+                    { label: 'Dashboard'       , routeName: 'dashboard' },
+                    { label: 'Contas Correntes', routeName: 'bank_accounts' }
                 ],
                 user: Auth.user
             };

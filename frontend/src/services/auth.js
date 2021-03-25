@@ -22,10 +22,10 @@ export default {
         this.user.data  = null;
         this.user.check = false;
     },
-    login (email, password) {
+    login (username, password) {
         let afterLoginContext = afterLogin.bind(this);
 
-        return JwtToken.accessToken(email, password)
+        return JwtToken.accessToken(username, password)
             .then(afterLoginContext);
     },
     logout () {

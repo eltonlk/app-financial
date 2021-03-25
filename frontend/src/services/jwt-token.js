@@ -10,10 +10,10 @@ export default {
     set token (value) {
         return value ? LocalStorage.set(TOKEN, value) : LocalStorage.remove(TOKEN);
     },
-    accessToken (email, password) {
-        return Jwt.accessToken(email, password)
+    accessToken (username, password) {
+        return Jwt.accessToken(username, password)
             .then((response) => {
-              this.token = response.data.token;
+              this.token = response.data.access;
               return response;
             });
     },

@@ -35,3 +35,4 @@ Run server
 * https://django-environ.readthedocs.io/
 * https://django-rest-framework-simplejwt.readthedocs.io
 * https://drf-yasg.readthedocs.io/
+* https://github.com/adamchainz/django-cors-headers

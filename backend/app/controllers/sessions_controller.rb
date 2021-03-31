@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+  before_action :authorized, only: [ :current_user ]
+
+  def current_user
+    render json: @user
+  end
 
   def sign_in
     @user = User.find_by username: params.require(:username)

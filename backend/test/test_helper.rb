@@ -11,3 +11,17 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+module SignInHelper
+  def auth_headers_as user
+    post sign_in_url, params: { username: user.username, password: '123456789' }
+    
+    token = JSON.parse(response.body)['token']
+
+    { "Authorization": "Bearer #{token}" }
+  end
+end
+
+class ActionDispatch::IntegrationTest
+  include SignInHelper
+end

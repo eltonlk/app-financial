@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :bank_accounts
 
   post 'sign_in', to: 'sessions#sign_in'
   post 'sign_up', to: 'sessions#sign_up'

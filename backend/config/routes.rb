@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   resources :bank_accounts
 
   post 'sign_in', to: 'sessions#sign_in'

@@ -44,7 +44,7 @@
                 }
             }
         },
-        ready () {
+        created () {
             let id = this.$route.params.id
 
             BankAccountsResource.get({ id: id })

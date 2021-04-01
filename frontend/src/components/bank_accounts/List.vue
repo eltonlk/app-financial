@@ -11,7 +11,7 @@
         <br>
 
         <div class="row">
-            <div v-for="bank_account in bank_accounts" :key="bank_account.id" class="col s12 m4">
+            <div v-for="(bank_account, i) in bank_accounts" :key="i" class="col s12 m4">
                 <div class="card grey lighten-5">
                     <div class="card-content">
                         <span class="card-title">
@@ -23,7 +23,7 @@
                             Editar
                         </router-link>
 
-                        <a href="#" @click.prevent="destroy(bank_account)" class="red-text">Excluir</a>
+                        <a href="#" @click.prevent="destroy(bank_account, i)" class="red-text">Excluir</a>
                     </div>
                 </div>
             </div>
@@ -47,10 +47,10 @@
                 })
         },
         methods: {
-            destroy (bank_account) {
+            destroy (bank_account, index) {
                 BankAccountsResource.delete({ id: bank_account.id })
                     .then(() => {
-                        this.bank_accounts.$remove(bank_account)
+                        this.bank_accounts.splice(index)
                     })
             }
         }

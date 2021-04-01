@@ -4,6 +4,9 @@ import BankAccountsUpdateComponent from "@/components/bank_accounts/Update.vue"
 import DashboardComponent          from "@/components/Dashboard.vue"
 import SessionsLoginComponent      from "@/components/sessions/Login.vue"
 import SessionsLogoutComponent     from "@/components/sessions/Logout.vue"
+import TagsCreateComponent         from "@/components/tags/Create.vue"
+import TagsListComponent           from "@/components/tags/List.vue"
+import TagsUpdateComponent         from "@/components/tags/Update.vue"
 
 let routes = [
     {
@@ -57,6 +60,30 @@ let routes = [
         },
         name: "logout",
         path: "/logout"
+    },
+    {
+        component: TagsListComponent,
+        meta: {
+            auth: true
+        },
+        name: "tags",
+        path: "/tags"
+    },
+    {
+        component: TagsCreateComponent,
+        meta: {
+            auth: true
+        },
+        name: "tags.create",
+        path: "/tags/create"
+    },
+    {
+        component: TagsUpdateComponent,
+        meta: {
+            auth: true
+        },
+        name: "tags.update",
+        path: "/tags/:id/update"
     }
 ]
 

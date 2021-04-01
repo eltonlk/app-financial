@@ -28,7 +28,8 @@
             return {
                 links: [
                     { label: 'Dashboard'       , routeName: 'dashboard' },
-                    { label: 'Contas Correntes', routeName: 'bank_accounts' }
+                    { label: 'Contas Correntes', routeName: 'bank_accounts' },
+                    { label: 'Tags'            , routeName: 'tags' }
                 ],
                 show: true
             };

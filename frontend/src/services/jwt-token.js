@@ -1,5 +1,5 @@
-import {Jwt}        from "./resources"
-import LocalStorage from "./localStorage"
+import SessionsResource from "@/resources/sessions.resource"
+import LocalStorage     from "@/services/localStorage"
 
 const TOKEN = "token"
 
@@ -11,29 +11,29 @@ export default {
         return value ? LocalStorage.set(TOKEN, value) : LocalStorage.remove(TOKEN)
     },
     accessToken (username, password) {
-        return Jwt.accessToken(username, password)
+        return SessionsResource.accessToken(username, password)
             .then((response) => {
               this.token = response.data.token
 
               return response
             })
     },
-    // afterRekoveToken () {
-    //     this.token = null;
-    // },
+    afterRekoveToken () {
+        this.token = null
+    },
     refreshToken () {
-        return Jwt.refreshToken()
+        return SessionsResource.refreshToken()
             .then((response) => {
-              this.token = response.data.token;
+              this.token = response.data.token
 
-              return response;
+              return response
             });
     },
-    // revokeToken () {
-    //     return Jwt.revokeToken()
-    //         .then(this.afterRekoveToken())
-    //         .catch(this.afterRekoveToken());
-    // },
+    revokeToken () {
+        return SessionsResource.revokeToken()
+            .then(this.afterRekoveToken())
+            .catch(this.afterRekoveToken())
+    },
     getAuthorizationHeader () {
         return `Bearer ${this.token}`
     }

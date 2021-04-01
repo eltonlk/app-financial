@@ -39,7 +39,8 @@
 </template>
 
 <script type="text/javascript">
-    import Auth from "../../services/auth";
+    import Auth from "@/services/auth";
+
     export default {
         data () {
             return {
@@ -57,7 +58,7 @@
             login () {
                 Auth.login(this.user.username, this.user.password)
                     .then(() => {
-                        this.$router.go({ name: "dashboard" });
+                        this.$router.push({ name: "dashboard" });
                     })
                     .catch((response) => {
                         this.error.any = true;

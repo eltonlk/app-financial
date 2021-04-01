@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import {BankAccounts} from "../../services/resources";
+    import BankAccountsResource from "@/resources/bank_accounts.resource"
 
     export default {
         data () {
@@ -42,21 +42,22 @@
                 bank_account: {
                     name: ''
                 }
-            };
+            }
         },
         ready () {
-            let id = this.$route.params.id;
-            BankAccounts.get({ id: id })
+            let id = this.$route.params.id
+
+            BankAccountsResource.get({ id: id })
                 .then((response) => {
-                    this.bank_account = response.data;
-                });
+                    this.bank_account = response.data
+                })
         },
         methods: {
             submit () {
-                BankAccounts.update({ id: this.bank_account.id }, this.bank_account)
+                BankAccountsResource.update({ id: this.bank_account.id }, this.bank_account)
                     .then(() => {
-                        this.$router.go({ name: 'product.list' });
-                    });
+                        this.$router.push({ name: 'bank_accounts' })
+                    })
             }
         }
     }

@@ -1,9 +1,9 @@
-import BankAccountsCreateComponent from "./components/bank_accounts/Create.vue";
-import BankAccountsListComponent   from "./components/bank_accounts/List.vue";
-import BankAccountsUpdateComponent from "./components/bank_accounts/Update.vue";
-import DashboardComponent          from "./components/Dashboard.vue";
-import SessionsLoginComponent      from "./components/sessions/Login.vue";
-import SessionsLogoutComponent     from "./components/sessions/Logout.vue";
+import BankAccountsCreateComponent from "@/components/bank_accounts/Create.vue"
+import BankAccountsListComponent   from "@/components/bank_accounts/List.vue"
+import BankAccountsUpdateComponent from "@/components/bank_accounts/Update.vue"
+import DashboardComponent          from "@/components/Dashboard.vue"
+import SessionsLoginComponent      from "@/components/sessions/Login.vue"
+import SessionsLogoutComponent     from "@/components/sessions/Logout.vue"
 
 let routes = [
     {
@@ -58,6 +58,6 @@ let routes = [
         name: "logout",
         path: "/logout"
     }
-];
+]
 
 export default routes

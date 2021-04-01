@@ -1,4 +1,4 @@
-import "./bootstrap";
-import "./router";
+import "@/bootstrap"
+import "@/router"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'

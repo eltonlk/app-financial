@@ -11,7 +11,7 @@
         <br>
 
         <div class="row">
-            <div v-for="bank_account in bank_accounts" :key="bank_account" class="col s12 m4">
+            <div v-for="bank_account in bank_accounts" :key="bank_account.id" class="col s12 m4">
                 <div class="card grey lighten-5">
                     <div class="card-content">
                         <span class="card-title">
@@ -32,26 +32,26 @@
 </template>
 
 <script>
-    import {BankAccounts} from "../../services/resources";
+    import BankAccountsResource from "@/resources/bank_accounts.resource"
 
     export default {
         data () {
             return {
                 bank_accounts: []
-            };
+            }
         },
-        ready () {
-            BankAccounts.query()
+        created () {
+            BankAccountsResource.query()
                 .then((response) => {
-                    this.bank_accounts = response.data;
-                });
+                    this.bank_accounts = response.data
+                })
         },
         methods: {
             destroy (bank_account) {
-                BankAccounts.delete({ id: bank_account.id })
+                BankAccountsResource.delete({ id: bank_account.id })
                     .then(() => {
-                        this.bank_accounts.$remove(bank_account);
-                    });
+                        this.bank_accounts.$remove(bank_account)
+                    })
             }
         }
     }

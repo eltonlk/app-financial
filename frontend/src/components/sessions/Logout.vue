@@ -13,11 +13,12 @@
 </template>
 
 <script type="text/javascript">
-    import Auth from "../../services/auth";
+    import Auth from "@/services/auth";
+
     export default {
         methods: {
             logout () {
-                let goToLogin = () => this.$router.go({ name: "auth.login" });
+                let goToLogin = () => this.$router.push({ name: "login" });
                 Auth.logout()
                     .then(goToLogin())
                     .catch(goToLogin());

@@ -15,15 +15,16 @@
 </template>
 
 <script>
-    import Auth          from "../services/auth";
-    import MenuComponent from "./Menu.vue";
+    import Auth          from "@/services/auth";
+    import MenuComponent from "@/components/Menu.vue";
+    
     export default {
         components: {
             MenuComponent
         },
         computed: {
             showHeader () {
-                return Auth.user.check && this.$route.name != 'auth.login';
+                return Auth.user.check && this.$route.name != 'login';
             }
         }
     };

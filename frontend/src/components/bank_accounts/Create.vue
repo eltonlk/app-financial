@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import {BankAccounts} from "../../services/resources";
+    import BankAccountsResource from "@/resources/bank_accounts.resource"
 
     export default {
         data () {
@@ -42,16 +42,14 @@
                 bank_account: {
                     name: ''
                 }
-            };
-        },
-        ready () {
+            }
         },
         methods: {
             submit () {
-                BankAccounts.save(this.bank_account)
+                BankAccountsResource.save(this.bank_account)
                     .then(() => {
-                        this.$router.go({ name: 'bank_accounts.list' });
-                    });
+                        this.$router.push({ name: 'bank_accounts' })
+                    })
             }
         }
     }

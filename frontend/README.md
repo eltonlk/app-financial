@@ -22,3 +22,11 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Webpack Bundle Analyzer
+
+http://localhost:8888
+
+```
+npm run serve
+```

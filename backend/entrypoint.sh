@@ -11,4 +11,4 @@ bundle exec rake db:create
 bundle exec rake db:migrate
 
 # Run the api service
-PORT=$BACKEND_PORT bundle exec puma
+PORT=$BACKEND_PORT bundle exec rails s

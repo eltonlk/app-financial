@@ -5,4 +5,4 @@ set -e
 npm install
 
 # Run the web service
-PORT=$FRONTEND_PORT npm run serve
+PORT=$FRONTEND_PORT NODE_ENV=development npm run serve

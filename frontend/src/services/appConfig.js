@@ -1,20 +1,20 @@
-// import config from "../config";
-
-let config = {
-    api_url: 'http://localhost:3000',
-    app_path: "/",
-    login_path: "#!/login"
-}
-
 const location = window.location
 
-let localConfig = {
-    host: `${location.protocol}//${location.hostname}:${location.port}`,
+export default {
+
+    get api_url () {
+        return process.env.VUE_APP_ROOT_API
+    },
+
+    app_path: "/",
+
+    get host () {
+        return `${location.protocol}//${location.hostname}:${location.port}`
+    },
+
+    login_path: "#!/login",
+
     get login_url () {
-        return `${this.host}${config.app_path}${config.login_path}`;
+        return `${this.host}${this.app_path}${this.login_path}`
     }
 }
-
-const appConfig = Object.assign({}, config, localConfig)
-
-export default appConfig

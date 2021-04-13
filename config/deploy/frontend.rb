@@ -66,6 +66,9 @@ set :tmp_dir  , '/home/univates/tmp'
 
 set :repo_tree, 'frontend'
 
+set :default_env, {
+  'NODE_ENV' => 'production'
+}
 
 # Default value for linked_dirs is []
 append :linked_dirs, "node_modules"

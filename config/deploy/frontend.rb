@@ -5,8 +5,7 @@
 
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
-# server "db.example.com", user: "deploy", roles: %w{db}
-
+server "177.44.248.50", user: "univates", roles: %w{app}
 
 
 # role-based syntax
@@ -59,3 +58,35 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+
+set :deploy_to, '/home/univates/frontend'
+set :branch   , 'rails'
+set :tmp_dir  , '/home/univates/tmp'
+
+set :repo_tree, 'frontend'
+
+
+# Default value for linked_dirs is []
+append :linked_dirs, "node_modules"
+
+
+namespace :frontend do
+
+  desc 'npm install'
+  task :npm do
+    on roles(:app) do
+      execute "cd #{release_path} && npm install --silent --no-progress"
+    end
+  end
+  before 'deploy:updated', 'frontend:npm'
+
+  desc 'build'
+  task :build do
+    on roles(:app) do
+      execute "cd #{release_path} && npm run build"
+    end
+  end
+  before 'deploy:updated', 'frontend:build'
+
+end

@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
       render json: { user: @user, token: token }
     else
-      render json: { error: "Invalid username or password" }
+      render json: { error: "Invalid username or password" }, status: :unauthorized
     end
   end
 
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
 
       render json: { user: @user, token: token }
     else
-      render json: { error: "Invalid username or password" }
+      render json: @tag.errors, status: :unprocessable_entity
     end
   end
 

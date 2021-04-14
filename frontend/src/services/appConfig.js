@@ -2,19 +2,19 @@ const location = window.location
 
 export default {
 
-    get api_url () {
+    get apiUrl () {
         return process.env.VUE_APP_ROOT_API
     },
 
-    app_path: "/",
+    appPath: "/",
 
     get host () {
         return `${location.protocol}//${location.hostname}:${location.port}`
     },
 
-    login_path: "#!/login",
+    signInPath: "#!/sign_in",
 
-    get login_url () {
-        return `${this.host}${this.app_path}${this.login_path}`
+    get SignInUrl () {
+        return `${this.host}${this.appPath}${this.signInPath}`
     }
 }

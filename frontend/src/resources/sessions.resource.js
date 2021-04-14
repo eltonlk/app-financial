@@ -1,8 +1,8 @@
 /* global Vue */
 
 export default class SessionsResource {
-    
-    static accessToken (username, password) {
+
+    static signIn (username, password) {
         return Vue.http.post("sign_in", {
             username: username,
             password: password
@@ -17,8 +17,15 @@ export default class SessionsResource {
         return Vue.http.post("refresh_token")
     }
 
-    static revokeToken () {
-        return Vue.http.post("revoke_token")
+    static signOut () {
+        return Vue.http.post("sign_out")
+    }
+
+    static signUp (username, password) {
+        return Vue.http.post("sign_up", {
+            username: username,
+            password: password
+        })
     }
 
 }

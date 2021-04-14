@@ -30,7 +30,7 @@
                     { label: 'Dashboard'       , routeName: 'dashboard' },
                     { label: 'Contas Correntes', routeName: 'bank_accounts' },
                     { label: 'Tags'            , routeName: 'tags' },
-                    { label: 'Sair'            , routeName: 'logout' }
+                    { label: 'Sair'            , routeName: 'sign_out' }
                 ],
                 show: true
             };

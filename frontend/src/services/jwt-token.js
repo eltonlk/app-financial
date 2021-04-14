@@ -10,16 +10,8 @@ export default {
     set token (value) {
         return value ? LocalStorage.set(TOKEN, value) : LocalStorage.remove(TOKEN)
     },
-    accessToken (username, password) {
-        return SessionsResource.accessToken(username, password)
-            .then((response) => {
-              this.token = response.data.token
-
-              return response
-            })
-    },
-    afterRekoveToken () {
-        this.token = null
+    getAuthorizationHeader () {
+        return `Bearer ${this.token}`
     },
     refreshToken () {
         return SessionsResource.refreshToken()
@@ -27,14 +19,36 @@ export default {
               this.token = response.data.token
 
               return response
-            });
+            })
     },
-    revokeToken () {
-        return SessionsResource.revokeToken()
-            .then(this.afterRekoveToken())
-            .catch(this.afterRekoveToken())
+    signIn (username, password) {
+        return SessionsResource.signIn(username, password)
+            .then((response) => {
+              this.token = response.data.token
+
+              return response
+            })
     },
-    getAuthorizationHeader () {
-        return `Bearer ${this.token}`
+    signOut () {
+        // TODO: rever o evento de sign out foi colocado o catch pois não possui a rota ainda
+        return SessionsResource.signOut()
+            .then((response) => {
+                this.token = null
+
+                return response
+            })
+            .catch((response) => {
+                this.token = null
+
+                return response
+            })
+    },
+    signUp (username, password) {
+        return SessionsResource.signUp(username, password)
+            .then((response) => {
+                this.token = response.data.token
+
+                return response
+            })
     }
 }

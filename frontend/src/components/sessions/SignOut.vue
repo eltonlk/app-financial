@@ -4,7 +4,7 @@
 			<div class="col-md-5 mx-auto">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h4 class="mb-3">Efetuando Logout...</h4>
+                        <h4 class="mb-3">Saindo...</h4>
 
                         <div class="spinner-border text-primary" role="status">
                             <span class="sr-only">Loading...</span>
@@ -21,16 +21,16 @@
 
     export default {
         methods: {
-            logout () {
-                let goToLogin = () => this.$router.push({ name: "login" });
+            signOut () {
+                let goToSignIn = () => this.$router.push({ name: "sign_in" });
 
-                Auth.logout()
-                    .then(goToLogin());
+                Auth.signOut()
+                    .then(goToSignIn());
             }
         },
         mounted () {
             setTimeout(() => {
-                this.logout();
+                this.signOut();
             }, 1000);
         }
     };

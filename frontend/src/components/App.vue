@@ -24,7 +24,7 @@
         },
         computed: {
             showHeader () {
-                return !(this.$route.name == 'login' || this.$route.name == 'logout') && Auth.user.check
+                return !(this.$route.name == 'sign_in' || this.$route.name == 'sign_out' || this.$route.name == 'sign_up') && Auth.user.check
             }
         }
     }

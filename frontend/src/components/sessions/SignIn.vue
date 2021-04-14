@@ -5,10 +5,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center mb-5">
-                            <h1>Login</h1>
+                            <h1>App Financeiro</h1>
                         </div>
 
-                        <form @submit.prevent="login()">
+                        <form @submit.prevent="signIn()">
                             <div class="text-center">
                                 <p class="text-danger">{{ error.message }}</p>
                             </div>
@@ -23,8 +23,14 @@
                                 <input type="password" name="password"  class="form-control" v-model="user.password" required>
                             </div>
 
-                            <div class="col-md-6 mx-auto">
-                                <button type="submit" class="btn btn-block btn-primary">Entrar</button>
+                            <div class="col-md-6 mx-auto text-center">
+                                <button type="submit" class="btn btn-block btn-primary mb-3">Entrar</button>
+
+                                <p>ou</p>
+
+                                <router-link :to="{ name: 'sign_up' }">
+                                    Criar Conta
+                                </router-link>
                             </div>
                         </form>
                     </div>
@@ -35,7 +41,7 @@
 </template>
 
 <script type="text/javascript">
-    import Auth from "@/services/auth";
+    import Auth from "@/services/auth"
 
     export default {
         data () {
@@ -51,21 +57,15 @@
             }
         },
         methods: {
-            login () {
-                Auth.login(this.user.username, this.user.password)
+            signIn () {
+                Auth.signIn(this.user.username, this.user.password)
                     .then(() => {
-                        this.$router.push({ name: "dashboard" });
+                        this.$router.push({ name: "dashboard" })
                     })
-                    .catch((response) => {
-                        this.error.any = true;
+                    .catch(() => {
+                        this.error.any = true
 
-                        switch (response.status) {
-                            case 401:
-                                this.error.message = response.data.detail;
-                                break;
-                            default:
-                                this.error.message = "Usuário ou senha inválidos.";
-                        }
+                        this.error.message = "Usuário ou senha inválidos."
                     });
             }
         }

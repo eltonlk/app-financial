@@ -11,7 +11,7 @@ import JwtToken  from "@/services/jwt-token"
 Vue.config.productionTip = false
 
 // Set resource root api url
-Vue.http.options.root = appConfig.api_url
+Vue.http.options.root = appConfig.apiUrl
 
 Vue.http.interceptors.push((request) => {
     request.headers.set("Authorization", JwtToken.getAuthorizationHeader())
@@ -27,7 +27,7 @@ Vue.http.interceptors.push((request, next) => {
                 .catch(() => {
                     Auth.clear()
 
-                    window.location.href = appConfig.login_url
+                    window.location.href = appConfig.signInUrl
                 })
         }
     })

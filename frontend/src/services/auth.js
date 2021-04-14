@@ -4,7 +4,7 @@ import SessionsResource from "@/resources/sessions.resource"
 
 const USER = "user"
 
-const afterLogin = function () {
+const afterSignIn = function () {
     this.user.check = true
 
     SessionsResource.currentUser()
@@ -13,8 +13,17 @@ const afterLogin = function () {
         })
 }
 
-const afterLogout = function () {
+const afterSignOut = function () {
     this.clear()
+}
+
+const afterSignUp = function () {
+    this.user.check = true
+
+    SessionsResource.currentUser()
+        .then((response) => {
+            this.user.data = response.data
+        })
 }
 
 export default {
@@ -22,18 +31,24 @@ export default {
         this.user.data  = null
         this.user.check = false
     },
-    login (username, password) {
-        let afterLoginContext = afterLogin.bind(this)
+    signIn (username, password) {
+        let afterSignInContext = afterSignIn.bind(this)
 
-        return JwtToken.accessToken(username, password)
-            .then(afterLoginContext)
+        return JwtToken.signIn(username, password)
+            .then(afterSignInContext)
     },
-    logout () {
-        let afterLogoutContext = afterLogout.bind(this)
+    signOut () {
+        let aftersignOutContext = afterSignOut.bind(this)
 
-        return JwtToken.revokeToken()
-            .then(afterLogoutContext)
-            .catch(afterLogoutContext)
+        return JwtToken.signOut()
+            .then(aftersignOutContext)
+            .catch(aftersignOutContext)
+    },
+    signUp (username, password) {
+        let afterSignUpContext = afterSignUp.bind(this)
+
+        return JwtToken.signUp(username, password)
+            .then(afterSignUpContext)
     },
     user: {
         set data (value) {

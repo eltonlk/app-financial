@@ -2,8 +2,9 @@ import BankAccountsCreateComponent from "@/components/bank_accounts/Create.vue"
 import BankAccountsListComponent   from "@/components/bank_accounts/List.vue"
 import BankAccountsUpdateComponent from "@/components/bank_accounts/Update.vue"
 import DashboardComponent          from "@/components/Dashboard.vue"
-import SessionsLoginComponent      from "@/components/sessions/Login.vue"
-import SessionsLogoutComponent     from "@/components/sessions/Logout.vue"
+import SessionsSignInComponent     from "@/components/sessions/SignIn.vue"
+import SessionsSignOutComponent    from "@/components/sessions/SignOut.vue"
+import SessionsSignUpComponent     from "@/components/sessions/SignUp.vue"
 import TagsCreateComponent         from "@/components/tags/Create.vue"
 import TagsListComponent           from "@/components/tags/List.vue"
 import TagsUpdateComponent         from "@/components/tags/Update.vue"
@@ -46,20 +47,28 @@ let routes = [
         path: '/'
     },
     {
-        component: SessionsLoginComponent,
+        component: SessionsSignInComponent,
         meta: {
             auth: false
         },
-        name: "login",
-        path: "/login"
+        name: "sign_in",
+        path: "/sign_in"
     },
     {
-        component: SessionsLogoutComponent,
+        component: SessionsSignOutComponent,
         meta: {
             auth: true
         },
-        name: "logout",
-        path: "/logout"
+        name: "sign_out",
+        path: "/sign_out"
+    },
+    {
+        component: SessionsSignUpComponent,
+        meta: {
+            auth: false
+        },
+        name: "sign_up",
+        path: "/sign_up"
     },
     {
         component: TagsListComponent,

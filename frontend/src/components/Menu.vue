@@ -17,6 +17,12 @@
                         </router-link>
                     </li>
                 </ul>
+
+                <ul class="navbar-nav">
+                    <router-link :to="{ name: 'logout' }" class="nav-link">
+                        Sair
+                    </router-link>
+                </ul>
             </div>
         </div>
     </nav>

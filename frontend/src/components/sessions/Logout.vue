@@ -19,12 +19,12 @@
         methods: {
             logout () {
                 let goToLogin = () => this.$router.push({ name: "login" });
+
                 Auth.logout()
-                    .then(goToLogin())
-                    .catch(goToLogin());
+                    .then(goToLogin());
             }
         },
-        ready () {
+        mounted () {
             setTimeout(() => {
                 this.logout();
             }, 1000);

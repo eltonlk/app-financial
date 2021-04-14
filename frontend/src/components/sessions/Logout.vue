@@ -1,11 +1,15 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col s8 offset-s2 z-depth-2">
-                <h3 class="center">Efetuando Logout...</h3>
+			<div class="col-md-5 mx-auto">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="mb-3">Efetuando Logout...</h4>
 
-                <div class="progress">
-                    <div class="indeterminate"></div>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

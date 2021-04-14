@@ -30,7 +30,12 @@
     }
 </script>
 
-<style scoped>
+<style>
+    html,
+    body {
+        background: #f8f9fa !important;
+    }
+
     main {
         margin-top: 100px;
     }

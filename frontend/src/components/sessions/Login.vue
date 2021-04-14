@@ -1,38 +1,34 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col s8 offset-s2 z-depth-2">
-                <h3 class="center">Login</h3>
-
-                <div class="row" v-if="error.any">
-                    <div class="col s12">
-                        <div class="card-panel red">
-                            <span class="white-text">{{ error.message }}</span>
+			<div class="col-md-5 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center mb-5">
+                            <h1>Login</h1>
                         </div>
+
+                        <form @submit.prevent="login()">
+                            <div class="text-center">
+                                <p class="text-danger">{{ error.message }}</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Usuário</label>
+                                <input type="text" name="username" class="form-control" v-model="user.username" required autofocus>
+                            </div>
+
+                            <div class="form-group mb-5">
+                                <label for="password">Senha</label>
+                                <input type="password" name="password"  class="form-control" v-model="user.password" required>
+                            </div>
+
+                            <div class="col-md-6 mx-auto">
+                                <button type="submit" class="btn btn-block btn-primary">Entrar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <form @submit.prevent="login()">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="username" type="text" name="username" v-model="user.username" required autofocus>
-                            <label for="username" class="active">Usuário</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="password" type="password" name="password" v-model="user.password" required>
-                            <label for="password" class="active">Senha</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <button type="submit" class="btn">Entrar</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -68,7 +64,7 @@
                                 this.error.message = response.data.detail;
                                 break;
                             default:
-                                this.error.message = "Login failed.";
+                                this.error.message = "Usuário ou senha inválidos.";
                         }
                     });
             }

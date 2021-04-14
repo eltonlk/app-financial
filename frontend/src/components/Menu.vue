@@ -10,18 +10,12 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent" v-bind:class="{ 'show': show }">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     <li v-for="(link, i) in links" :key="i" class="nav-item">
                         <router-link :to="{ name: link.routeName }" class="nav-link">
                             {{ link.label }}
                         </router-link>
                     </li>
-                </ul>
-
-                <ul class="navbar-nav">
-                    <router-link :to="{ name: 'logout' }" class="nav-link">
-                        Sair
-                    </router-link>
                 </ul>
             </div>
         </div>
@@ -35,7 +29,8 @@
                 links: [
                     { label: 'Dashboard'       , routeName: 'dashboard' },
                     { label: 'Contas Correntes', routeName: 'bank_accounts' },
-                    { label: 'Tags'            , routeName: 'tags' }
+                    { label: 'Tags'            , routeName: 'tags' },
+                    { label: 'Sair'            , routeName: 'logout' }
                 ],
                 show: true
             };

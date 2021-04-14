@@ -67,4 +67,4 @@ set :tmp_dir  , '/home/univates/tmp'
 set :repo_tree, 'backend'
 
 # Default value for :linked_files is []
-append :linked_files, "config/master.key"
+append :linked_files, "config/master.key", "db/production.sqlite3"

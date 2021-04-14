@@ -1,35 +1,33 @@
 <template>
     <div class="container">
-        <nav>
-            <h4 class="left">Adicionar Conta Corrente</h4>
-
-            <router-link :to="{ name: 'bank_accounts' }">
-                Voltar
-            </router-link>
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <router-link :to="{ name: 'bank_accounts' }">
+                        Contas Corrente
+                    </router-link>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Adicionar Conta Corrente</li>
+            </ol>
         </nav>
 
-        <br>
-
-        <div class="row">
-            <div class="col m8 offset-m2 z-depth-1">
-                <form>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" id="name" v-model="bank_account.name">
-                            <label for="name" class="active">Nome</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s12">
-                            <p class="center-align">
-                                <button class="btn btn-large btn-default" type="button" @click="submit()">Adicionar</button>
-                            </p>
-                        </div>
-                    </div>
-                </form>
+        <form @submit.prevent="submit()" >
+            <div v-if="error.any" class="text-center">
+                <p class="text-danger">Verifique os erros abaixo:</p>
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" name="name" class="form-control" v-model="bank_account.name" required autofocus :class="{ 'is-invalid': isInvalid('name') }">
+                <div class="invalid-feedback">
+                    <p v-for="(message, i) in error.messages['name']" :key="i">
+                        {{ message }}
+                    </p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Alterar</button>
+        </form>
     </div>
 </template>
 
@@ -41,10 +39,17 @@
             return {
                 bank_account: {
                     name: ''
+                },
+                error: {
+                    any: false,
+                    messages: {}
                 }
             }
         },
         methods: {
+            isInvalid (attribute) {
+                return attribute in this.error.messages
+            },
             submit () {
                 BankAccountsResource.save(this.bank_account)
                     .then(() => {

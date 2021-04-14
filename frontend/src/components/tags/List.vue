@@ -1,29 +1,26 @@
 <template>
     <div class="container">
-        <nav>
-            <h4 class="left">Tags</h4>
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Tags</li>
+            </ol>
 
-            <router-link :to="{ name: 'tags.create' }">
+            <router-link :to="{ name: 'tags.create' }" class="btn btn-primary">
                 Adicionar
             </router-link>
         </nav>
 
-        <br>
-
         <div class="row">
-            <div v-for="(tag, i) in tags" :key="i" class="col s12 m4">
-                <div class="card grey lighten-5">
-                    <div class="card-content">
-                        <span class="card-title">
-                            #{{ tag.id }} {{ tag.name }}
-                        </span>
-                    </div>
-                    <div class="card-action">
-                        <router-link :to="{ name: 'tags.update', params: { id: tag.id } }">
-                            Editar
+            <div v-for="(tag, i) in tags" :key="i" class="col-md-4 col-lg-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tag.name }}</h5>
+
+                        <router-link :to="{ name: 'tags.update', params: { id: tag.id } }" class="card-link">
+                            Alterar
                         </router-link>
 
-                        <a href="#" @click.prevent="destroy(tag, i)" class="red-text">Excluir</a>
+                        <a href="#" @click.prevent="destroy(tag, i)" class="card-link text-danger">Excluir</a>
                     </div>
                 </div>
             </div>
@@ -50,7 +47,7 @@
             destroy (tag, index) {
                 TagsResource.delete({ id: tag.id })
                     .then(() => {
-                        this.tags.splice(index)
+                        this.tags.splice(index, 1)
                     })
             }
         }
